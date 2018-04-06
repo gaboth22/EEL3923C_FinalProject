@@ -29,7 +29,7 @@ ORDERED_OBJS += \
 "./Input/Input_Button.obj" \
 "./Input/Input_Dial.obj" \
 "./Input/Input_StepperMotorHomeSensor.obj" \
-"./Input/Input_TwoButtonTimedPress.obj" \
+"./Input/Input_TimedButtonPress.obj" \
 "./Timer/Timer_OneShot.obj" \
 "./Timer/Timer_Periodic.obj" \
 "./TimerModule/TimerModule.obj" \
@@ -190,8 +190,8 @@ FinalProject.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "Application.obj" "main.obj" "Controllers/DacController.obj" "Controllers/LcdDisplayController.obj" "Controllers/StepperCalibrator.obj" "DataStructures/LinkedList.obj" "DataStructures/LinkedListNode.obj" "Event/EventSubscriber_Synchronous.obj" "Event/Event_Synchronous.obj" "HardwareAbstractions/Adc_10.obj" "HardwareAbstractions/GpioGroup.obj" "HardwareAbstractions/HeartbeatLed.obj" "HardwareAbstractions/Interrupt_1MsSystemTick.obj" "HardwareAbstractions/LcdDisplayParallel2Line.obj" "HardwareAbstractions/Spi.obj" "HardwareAbstractions/StepperMotor.obj" "HardwareAbstractions/TimeSource_Interrupt1MsSystemTick.obj" "HardwareAbstractions/WaveformGenerator.obj" "Input/Input_Button.obj" "Input/Input_Dial.obj" "Input/Input_StepperMotorHomeSensor.obj" "Input/Input_TwoButtonTimedPress.obj" "Timer/Timer_OneShot.obj" "Timer/Timer_Periodic.obj" "TimerModule/TimerModule.obj" 
-	-$(RM) "Application.d" "main.d" "Controllers/DacController.d" "Controllers/LcdDisplayController.d" "Controllers/StepperCalibrator.d" "DataStructures/LinkedList.d" "DataStructures/LinkedListNode.d" "Event/EventSubscriber_Synchronous.d" "Event/Event_Synchronous.d" "HardwareAbstractions/Adc_10.d" "HardwareAbstractions/GpioGroup.d" "HardwareAbstractions/HeartbeatLed.d" "HardwareAbstractions/Interrupt_1MsSystemTick.d" "HardwareAbstractions/LcdDisplayParallel2Line.d" "HardwareAbstractions/Spi.d" "HardwareAbstractions/StepperMotor.d" "HardwareAbstractions/TimeSource_Interrupt1MsSystemTick.d" "HardwareAbstractions/WaveformGenerator.d" "Input/Input_Button.d" "Input/Input_Dial.d" "Input/Input_StepperMotorHomeSensor.d" "Input/Input_TwoButtonTimedPress.d" "Timer/Timer_OneShot.d" "Timer/Timer_Periodic.d" "TimerModule/TimerModule.d" 
+	-$(RM) "Application.obj" "main.obj" "Controllers/DacController.obj" "Controllers/LcdDisplayController.obj" "Controllers/StepperCalibrator.obj" "DataStructures/LinkedList.obj" "DataStructures/LinkedListNode.obj" "Event/EventSubscriber_Synchronous.obj" "Event/Event_Synchronous.obj" "HardwareAbstractions/Adc_10.obj" "HardwareAbstractions/GpioGroup.obj" "HardwareAbstractions/HeartbeatLed.obj" "HardwareAbstractions/Interrupt_1MsSystemTick.obj" "HardwareAbstractions/LcdDisplayParallel2Line.obj" "HardwareAbstractions/Spi.obj" "HardwareAbstractions/StepperMotor.obj" "HardwareAbstractions/TimeSource_Interrupt1MsSystemTick.obj" "HardwareAbstractions/WaveformGenerator.obj" "Input/Input_Button.obj" "Input/Input_Dial.obj" "Input/Input_StepperMotorHomeSensor.obj" "Input/Input_TimedButtonPress.obj" "Timer/Timer_OneShot.obj" "Timer/Timer_Periodic.obj" "TimerModule/TimerModule.obj" 
+	-$(RM) "Application.d" "main.d" "Controllers/DacController.d" "Controllers/LcdDisplayController.d" "Controllers/StepperCalibrator.d" "DataStructures/LinkedList.d" "DataStructures/LinkedListNode.d" "Event/EventSubscriber_Synchronous.d" "Event/Event_Synchronous.d" "HardwareAbstractions/Adc_10.d" "HardwareAbstractions/GpioGroup.d" "HardwareAbstractions/HeartbeatLed.d" "HardwareAbstractions/Interrupt_1MsSystemTick.d" "HardwareAbstractions/LcdDisplayParallel2Line.d" "HardwareAbstractions/Spi.d" "HardwareAbstractions/StepperMotor.d" "HardwareAbstractions/TimeSource_Interrupt1MsSystemTick.d" "HardwareAbstractions/WaveformGenerator.d" "Input/Input_Button.d" "Input/Input_Dial.d" "Input/Input_StepperMotorHomeSensor.d" "Input/Input_TimedButtonPress.d" "Timer/Timer_OneShot.d" "Timer/Timer_Periodic.d" "TimerModule/TimerModule.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

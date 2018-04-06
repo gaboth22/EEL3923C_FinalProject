@@ -8,12 +8,6 @@
 #include "Timer_Periodic.h"
 #include "Timer_OneShot.h"
 
-/*
- * The event will only publish the first time the
- * needle hits the home sensor, and then will stop
- * polling.
- */
-
 typedef struct
 {
     I_Input_t interface;

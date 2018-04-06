@@ -9,6 +9,7 @@
 #include "I_StepperMotor.h"
 #include "I_Input.h"
 #include "I_Spi.h"
+#include "Input_TimedButtonPress.h"
 #include "LcdDisplayController.h"
 #include "StepperCalibrator.h"
 #include "Timer_OneShot.h"
@@ -21,6 +22,7 @@ typedef struct
     HeartbeatLed_t heartbeatLed;
     LcdDisplayController_t lcdDisplayController;
     Timer_Periodic_t writeToLcdTimer;
+    Timer_Periodic_t activeWorkoutLedTimer;
     Timer_OneShot_t moveDisplayCursorTimer;
     TimerModule_t *timerModule;
     I_StepperMotor_t *stepperMotorOne;
@@ -38,16 +40,22 @@ typedef struct
     EventSubscriber_Synchronous_t buttonTwoSubscriber;
     EventSubscriber_Synchronous_t buttonThreeSubscriber;
     EventSubscriber_Synchronous_t calibrationDoneSub;
+    EventSubscriber_Synchronous_t timedInputSub;
     StepDirection_t currentDirection;
     StepperCalibrator_t stepperCalibrator;
+    Input_TimedButtonPress_t timedInput;
     GpioState_t currentLedState;
     int8_t stepperOnePositionIndex;
     int8_t stepperTwoPositionIndex;
-    bool workoutStarted;
-    uint16_t currentFrequency;
+    bool shouldOutputWave;
+    uint16_t waveFrequencyHz;
+    float waveAmplitudePercentage;
     char lcdDisplayLine1[16];
     char lcdDisplayLine2[16];
     uint8_t outputToChange;
+    uint16_t workoutTime;
+    bool updateTime;
+    bool calibrationDone;
 } Application_t;
 
 /*

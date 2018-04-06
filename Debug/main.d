@@ -24,12 +24,13 @@ main.obj: /Users/gaboth22/Documents/workspace/FinalProject/Timer/Timer_Periodic.
 main.obj: /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_Adc.h
 main.obj: /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_StepperMotor.h
 main.obj: /Users/gaboth22/Documents/workspace/FinalProject/Input/I_Input.h
-main.obj: /Users/gaboth22/Documents/workspace/FinalProject/Controllers/LcdDisplayController.h
-main.obj: /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_LcdDisplayParallel2Line.h
-main.obj: /Users/gaboth22/Documents/workspace/FinalProject/Controllers/StepperCalibrator.h
+main.obj: /Users/gaboth22/Documents/workspace/FinalProject/Input/Input_TimedButtonPress.h
 main.obj: /Users/gaboth22/Documents/workspace/FinalProject/Event/Event_Synchronous.h
 main.obj: /Users/gaboth22/Documents/workspace/FinalProject/DataStructures/LinkedList.h
 main.obj: /Users/gaboth22/Documents/workspace/FinalProject/Timer/Timer_OneShot.h
+main.obj: /Users/gaboth22/Documents/workspace/FinalProject/Controllers/LcdDisplayController.h
+main.obj: /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_LcdDisplayParallel2Line.h
+main.obj: /Users/gaboth22/Documents/workspace/FinalProject/Controllers/StepperCalibrator.h
 main.obj: /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/WaveformGenerator.h
 main.obj: /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/Adc_10.h
 main.obj: /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/GpioGroup.h
@@ -68,12 +69,13 @@ main.obj: /Users/gaboth22/Documents/workspace/FinalProject/Utilities/utils.h
 /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_Adc.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_StepperMotor.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/Input/I_Input.h: 
-/Users/gaboth22/Documents/workspace/FinalProject/Controllers/LcdDisplayController.h: 
-/Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_LcdDisplayParallel2Line.h: 
-/Users/gaboth22/Documents/workspace/FinalProject/Controllers/StepperCalibrator.h: 
+/Users/gaboth22/Documents/workspace/FinalProject/Input/Input_TimedButtonPress.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/Event/Event_Synchronous.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/DataStructures/LinkedList.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/Timer/Timer_OneShot.h: 
+/Users/gaboth22/Documents/workspace/FinalProject/Controllers/LcdDisplayController.h: 
+/Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_LcdDisplayParallel2Line.h: 
+/Users/gaboth22/Documents/workspace/FinalProject/Controllers/StepperCalibrator.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/WaveformGenerator.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/Adc_10.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/GpioGroup.h: 

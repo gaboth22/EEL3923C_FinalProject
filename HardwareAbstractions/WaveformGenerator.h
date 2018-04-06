@@ -9,7 +9,7 @@ typedef struct
     const uint16_t *waveform;
     uint8_t waveformSize;
     uint8_t currentIndex;
-    uint16_t amplitudeDivider;
+    float amplitudePercentage;
     DacController_t *dacController;
 } WaveformGenerator_t;
 
@@ -21,12 +21,12 @@ void WaveformGenerator_SetFrequencyInHz(WaveformGenerator_t *instance, uint16_t 
 /*
  * Set divider to divide output data by
  */
-void WaveformGenerator_SetAmplitudeDivider(WaveformGenerator_t *instance, uint16_t divider);
+void WaveformGenerator_SetAmplitudePercentage(WaveformGenerator_t *instance, float amplitudePercentage);
 
 /*
  * Stop the waveform output
  */
-void WaveformGenerator_Stop(WaveformGenerator_t *instance);
+void WaveformGenerator_Stop(WaveformGenerator_t *instance, uint16_t outputDigitalVoltage);
 
 /*
  * Start the waveform generator with the given wave

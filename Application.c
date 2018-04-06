@@ -8,12 +8,14 @@
 
 enum
 {
-    PeriodToToggleHeartbeatLedsMs = 200,
+    PeriodToToggleHeartbeatLedsMs = 400,
+    PeriodToToggleActiveWorkoutLedMs = 50,
     PeriodToUpdateLcdDisplayMs = 500,
     EnoughStepsForThreeFullRevolutions = 12000,
     StepsToPlaceAtZeroPositionForMotorOne = 388,
     StepsToPlaceAtZeroPositionForMotorTwo = 377,
-    MaxStepIndexCount = 20
+    MaxStepIndexCount = 20,
+    PeriodToCountTimedPressAfterMs = 1500
 };
 
 typedef enum
@@ -22,23 +24,32 @@ typedef enum
     StepperOutputToChange_Two = 1
 } StepperOutputToChange_t;
 
-static const uint8_t stepperOneStepsPerSubdivision[MaxStepIndexCount] =
+static const uint8_t stepperStepsPerSubdivision[MaxStepIndexCount] =
     {
          171, 171, 171, 171, 171, 171, 171, 171, 171, 171,
          171, 171, 171, 171, 171, 171, 171, 171, 171, 171
     };
 
-void Uint16ToString(uint16_t data, char *buffer)
-{
-    uint8_t byte3 = (data / 1000);
-    uint8_t byte2 = ((data % 1000) / 100);
-    uint8_t byte1 = (((data % 1000) % 100) / 10);
-    uint8_t byte0 = (((data % 1000) % 100) % 10);
+static void StartCalibrationCycle(Application_t *instance);
 
-    buffer[0] = (byte3 + '0');
-    buffer[1] = (byte2 + '0');
-    buffer[2] = (byte1 + '0');
-    buffer[3] = (byte0 + '0');
+static void Uint8To3LenghtString(uint8_t data, char *buffer)
+{
+    uint8_t byte2 = (data / 100);
+    uint8_t byte1 = ((data % 100) / 10);
+    uint8_t byte0 = (data % 10);
+
+    buffer[0] = (byte2 + '0');
+    buffer[1] = (byte1 + '0');
+    buffer[2] = (byte0 + '0');
+}
+
+static void Uint8To2LenghtString(uint8_t data, char *buffer)
+{
+    uint8_t byte1 = (data / 10);
+    uint8_t byte0 = (data % 10);
+
+    buffer[0] = (byte1 + '0');
+    buffer[1] = (byte0 + '0');
 }
 
 static void ReturnCursor(void *context)
@@ -50,10 +61,11 @@ static void ReturnCursor(void *context)
 static void WriteToSecondLcdLine(void *context)
 {
     RECAST(instance, context, Application_t *);
-    char adcReadingStr[4];
-    Uint16ToString(Adc_GetCounts(instance->adc), adcReadingStr);
-    LcdDisplayController_WriteString(&instance->lcdDisplayController, adcReadingStr, 4);
 
+    LcdDisplayController_WriteString(
+            &instance->lcdDisplayController,
+            instance->lcdDisplayLine2,
+            16);
     Timer_OneShot_Init(
             &instance->moveDisplayCursorTimer,
             instance->timerModule,
@@ -66,8 +78,8 @@ static void WriteToSecondLcdLine(void *context)
 static void MoveCursorToSecondLcdLine(void *context)
 {
     RECAST(instance, context, Application_t *);
-    LcdDisplayController_SetCursorIndex(&instance->lcdDisplayController, 2, 0);
 
+    LcdDisplayController_SetCursorIndex(&instance->lcdDisplayController, 2, 0);
     Timer_OneShot_Init(
             &instance->moveDisplayCursorTimer,
             instance->timerModule,
@@ -77,11 +89,63 @@ static void MoveCursorToSecondLcdLine(void *context)
     Timer_OneShot_Start(&instance->moveDisplayCursorTimer);
 }
 
+static uint8_t GetHr(Application_t *instance)
+{
+    return (uint8_t)(Adc_GetCounts(instance->adc) / 8) + 60;
+}
+
+static void GetTimeAsString(Application_t *instance, char *time)
+{
+    uint8_t minutes = (uint8_t)(instance->workoutTime / 60);
+    uint8_t seconds = (uint8_t)(instance->workoutTime % 60);
+    Uint8To2LenghtString(minutes, time);
+    time[2] = ':';
+    Uint8To2LenghtString(seconds, &time[3]);
+}
+
 static void UpdateLcd(void *context)
 {
     RECAST(instance, context, Application_t *);
-    LcdDisplayController_WriteString(&instance->lcdDisplayController, "Hello there!", 12);
 
+    if(instance->shouldOutputWave)
+    {
+        if(instance->updateTime)
+        {
+            instance->workoutTime++;
+        }
+        instance->updateTime = !instance->updateTime;
+
+        char hr[3];
+        char time[5];
+        Uint8To3LenghtString(GetHr(instance), hr);
+        GetTimeAsString(instance, time);
+        memcpy(instance->lcdDisplayLine1, "WORKOUT:00:00___", 16);
+        memcpy(instance->lcdDisplayLine2, "HR:000 ", 7);
+        instance->lcdDisplayLine1[8] = time[0];
+        instance->lcdDisplayLine1[9] = time[1];
+        instance->lcdDisplayLine1[10] = time[2];
+        instance->lcdDisplayLine1[11] = time[3];
+        instance->lcdDisplayLine1[12] = time[4];
+        instance->lcdDisplayLine2[3] = hr[0];
+        instance->lcdDisplayLine2[4] = hr[1];
+        instance->lcdDisplayLine2[5] = hr[2];
+    }
+    else
+    {
+        if(instance->calibrationDone)
+        {
+            memcpy(instance->lcdDisplayLine2, " START  |", 9);
+        }
+        else
+        {
+            memcpy(instance->lcdDisplayLine2, "         ", 9);
+        }
+    }
+
+    LcdDisplayController_WriteString(
+            &instance->lcdDisplayController,
+            instance->lcdDisplayLine1,
+            16);
     Timer_OneShot_Init(
             &instance->moveDisplayCursorTimer,
             instance->timerModule,
@@ -91,23 +155,36 @@ static void UpdateLcd(void *context)
     Timer_OneShot_Start(&instance->moveDisplayCursorTimer);
 }
 
-//static void ToggleLed(void *context, void *args)
-//{
-//    RECAST(instance, context, Application_t *);
-//    RECAST(gpioState, args, GpioState_t *);
-//
-//    if(*gpioState == GpioState_Low)
-//    {
-//        DacController_SendInputCode(&instance->dacController, instance->testDacValue++);
-//        if(instance->testDacValue > 1023)
-//        {
-//            instance->testDacValue = 0;
-//        }
-//
-//        instance->currentLedState = (GpioState_t)!instance->currentLedState;
-//        GpioGroup_SetState(instance->gpioGroup, GpioStatusLed, instance->currentLedState);
-//    }
-//}
+static void ToggleWaveState(void *context, void *args)
+{
+    RECAST(instance, context, Application_t *);
+    IGNORE(args);
+
+    if(!instance->shouldOutputWave)
+    {
+        Timer_Periodic_Start(&instance->activeWorkoutLedTimer);
+        instance->shouldOutputWave = true;
+        WaveformGenerator_SetAmplitudePercentage(instance->waveformGenerator, instance->waveAmplitudePercentage);
+        WaveformGenerator_Start(instance->waveformGenerator, sineWave, sineWaveLookupSize);
+        WaveformGenerator_SetFrequencyInHz(instance->waveformGenerator, instance->waveFrequencyHz);
+    }
+    else
+    {
+        Timer_Periodic_Command(&instance->activeWorkoutLedTimer, Timer_Periodic_Command_Stop);
+        GpioGroup_SetState(instance->gpioGroup, GpioStatusLed, GpioState_High);
+        instance->shouldOutputWave = false;
+        instance->calibrationDone = false;
+        memcpy(instance->lcdDisplayLine1, "Calibrating...  ", 16);
+        memcpy(instance->lcdDisplayLine2, "                ", 16);
+        WaveformGenerator_Stop(instance->waveformGenerator, 0);
+        StartCalibrationCycle(instance);
+        instance->stepperOnePositionIndex = -1;
+        instance->stepperTwoPositionIndex = -1;
+        instance->waveFrequencyHz = 0;
+        instance->waveAmplitudePercentage = 0.0;
+        instance->workoutTime = 0;
+    }
+}
 
 static void IncreaseStepperOutput(void *context, void *args)
 {
@@ -121,25 +198,26 @@ static void IncreaseStepperOutput(void *context, void *args)
             if(!StepperMotor_IsBusy(instance->stepperMotorOne) &&
                instance->stepperOnePositionIndex < MaxStepIndexCount - 1)
             {
-                if(instance->workoutStarted)
+                instance->waveFrequencyHz++;
+
+                if(instance->shouldOutputWave)
                 {
-                    if(instance->currentFrequency == 0)
+                    if(instance->waveFrequencyHz == 0)
                     {
                         WaveformGenerator_Start(
                                 instance->waveformGenerator,
                                 sineWave,
-                                60);
+                                sineWaveLookupSize);
                     }
 
-                    instance->currentFrequency++;
-                    WaveformGenerator_SetFrequencyInHz(instance->waveformGenerator, instance->currentFrequency);
+                    WaveformGenerator_SetFrequencyInHz(instance->waveformGenerator, instance->waveFrequencyHz);
                 }
 
                 instance->stepperOnePositionIndex++;
                 StepperMotor_DoStep(
                     instance->stepperMotorOne,
                     StepDirection_Forward,
-                    (uint16_t)stepperOneStepsPerSubdivision[instance->stepperOnePositionIndex]);
+                    (uint16_t)stepperStepsPerSubdivision[instance->stepperOnePositionIndex]);
             }
         }
         else
@@ -147,11 +225,20 @@ static void IncreaseStepperOutput(void *context, void *args)
             if(!StepperMotor_IsBusy(instance->stepperMotorTwo) &&
                instance->stepperTwoPositionIndex < MaxStepIndexCount - 1)
             {
+                instance->waveAmplitudePercentage += 0.05;
+
+                if(instance->shouldOutputWave)
+                {
+                    WaveformGenerator_SetAmplitudePercentage(
+                            instance->waveformGenerator,
+                            instance->waveAmplitudePercentage);
+                }
+
                 instance->stepperTwoPositionIndex++;
                 StepperMotor_DoStep(
                     instance->stepperMotorTwo,
                     StepDirection_Forward,
-                    (uint16_t)stepperOneStepsPerSubdivision[instance->stepperTwoPositionIndex]);
+                    (uint16_t)stepperStepsPerSubdivision[instance->stepperTwoPositionIndex]);
             }
         }
     }
@@ -169,25 +256,26 @@ static void DecreaseStepperOutput(void *context, void *args)
             if(!StepperMotor_IsBusy(instance->stepperMotorOne) &&
                instance->stepperOnePositionIndex >= 0)
             {
-                if(instance->workoutStarted)
+                instance->waveFrequencyHz--;
+
+                if(instance->shouldOutputWave)
                 {
-                    instance->currentFrequency--;
-                    if(instance->currentFrequency == 0)
+                    if(instance->waveFrequencyHz == 0)
                     {
-                        WaveformGenerator_Stop(instance->waveformGenerator);
+                        WaveformGenerator_Stop(instance->waveformGenerator, 0);
                     }
                     else
                     {
                         WaveformGenerator_SetFrequencyInHz(
                                 instance->waveformGenerator,
-                                instance->currentFrequency);
+                                instance->waveFrequencyHz);
                     }
                 }
 
                 StepperMotor_DoStep(
                     instance->stepperMotorOne,
                     StepDirection_Backward,
-                    (uint16_t)stepperOneStepsPerSubdivision[instance->stepperOnePositionIndex]);
+                    (uint16_t)stepperStepsPerSubdivision[instance->stepperOnePositionIndex]);
                 instance->stepperOnePositionIndex--;
             }
         }
@@ -196,10 +284,19 @@ static void DecreaseStepperOutput(void *context, void *args)
             if(!StepperMotor_IsBusy(instance->stepperMotorTwo) &&
                instance->stepperTwoPositionIndex >= 0)
             {
+                instance->waveAmplitudePercentage -= 0.05;
+
+                if(instance->shouldOutputWave)
+                {
+                    WaveformGenerator_SetAmplitudePercentage(
+                            instance->waveformGenerator,
+                            instance->waveAmplitudePercentage);
+                }
+
                 StepperMotor_DoStep(
                     instance->stepperMotorTwo,
                     StepDirection_Backward,
-                    (uint16_t)stepperOneStepsPerSubdivision[instance->stepperTwoPositionIndex]);
+                    (uint16_t)stepperStepsPerSubdivision[instance->stepperTwoPositionIndex]);
                 instance->stepperTwoPositionIndex--;
             }
         }
@@ -213,7 +310,16 @@ static void SwitchBetweenStepperOneOrTwoControl(void *context, void *args)
 
     if(*gpioState == GpioState_Low)
     {
-        instance->outputToChange = (StepperOutputToChange_t)!instance->outputToChange;
+        if(instance->outputToChange == StepperOutputToChange_One)
+        {
+            memcpy(&instance->lcdDisplayLine2[9], "INCLINE", 7);
+            instance->outputToChange = StepperOutputToChange_Two;
+        }
+        else
+        {
+            memcpy(&instance->lcdDisplayLine2[9], " SPEED ", 7);
+            instance->outputToChange = StepperOutputToChange_One;
+        }
     }
 }
 
@@ -221,19 +327,33 @@ static void BeginNormalOperation(void *context, void *args)
 {
     RECAST(instance, context, Application_t *);
     IGNORE(args);
-    LcdDisplayController_SetCursorIndex(&instance->lcdDisplayController, 1, 0);
+    Event_Unsubscribe(
+             StepperCalibrator_GetOnCalibrationDoneEvent(&instance->stepperCalibrator),
+             &instance->calibrationDoneSub.interface);
+    Event_Subscribe(Input_GetOnChangeEvent(&instance->timedInput.interface), &instance->timedInputSub.interface);
     Event_Subscribe(Input_GetOnChangeEvent(instance->buttonOne), &instance->buttonOneSubscriber.interface);
     Event_Subscribe(Input_GetOnChangeEvent(instance->buttonTwo), &instance->buttonTwoSubscriber.interface);
     Event_Subscribe(Input_GetOnChangeEvent(instance->buttonThree), &instance->buttonThreeSubscriber.interface);
-    Timer_Periodic_Start(&instance->writeToLcdTimer);
+
+    instance->calibrationDone = true;
+
+    memcpy(instance->lcdDisplayLine1, "HOLD TO |SETTING", 16);
+    if(instance->outputToChange == StepperOutputToChange_One)
+    {
+        memcpy(instance->lcdDisplayLine2, " START  | SPEED ", 16);
+    }
+    else
+    {
+        memcpy(instance->lcdDisplayLine2, " START  |INCLINE", 16);
+    }
+
+    LcdDisplayController_SetCursorIndex(&instance->lcdDisplayController, 1, 0);
 }
 
 static void CalibrateStepperTwo(void *context, void *args)
 {
     RECAST(instance, context, Application_t *);
     IGNORE(args);
-
-    LcdDisplayController_WriteString(&instance->lcdDisplayController, "Calibrating...", 14);
 
     Event_Unsubscribe(
             StepperCalibrator_GetOnCalibrationDoneEvent(&instance->stepperCalibrator),
@@ -249,6 +369,32 @@ static void CalibrateStepperTwo(void *context, void *args)
             instance->stepperTwoHomePositionSensor,
             EnoughStepsForThreeFullRevolutions,
             StepsToPlaceAtZeroPositionForMotorTwo);
+}
+
+static void StartCalibrationCycle(Application_t *instance)
+{
+    Event_Unsubscribe(Input_GetOnChangeEvent(&instance->timedInput.interface), &instance->timedInputSub.interface);
+    Event_Unsubscribe(Input_GetOnChangeEvent(instance->buttonOne), &instance->buttonOneSubscriber.interface);
+    Event_Unsubscribe(Input_GetOnChangeEvent(instance->buttonTwo), &instance->buttonTwoSubscriber.interface);
+    Event_Unsubscribe(Input_GetOnChangeEvent(instance->buttonThree), &instance->buttonThreeSubscriber.interface);
+
+    EventSubscriber_Synchronous_Init(&instance->calibrationDoneSub, CalibrateStepperTwo, instance);
+    Event_Subscribe(
+            StepperCalibrator_GetOnCalibrationDoneEvent(&instance->stepperCalibrator),
+            &instance->calibrationDoneSub.interface);
+    StepperCalibrator_Calibrate(
+            &instance->stepperCalibrator,
+            instance->stepperMotorOne,
+            instance->stepperOneHomePositionSensor,
+            EnoughStepsForThreeFullRevolutions,
+            StepsToPlaceAtZeroPositionForMotorOne);
+}
+
+static void ToggleWorkoutLed(void *context)
+{
+    RECAST(instance, context, Application_t *);
+    instance->currentLedState = (GpioState_t)!instance->currentLedState;
+    GpioGroup_SetState(instance->gpioGroup, GpioStatusLed, instance->currentLedState);
 }
 
 void Application_Run(Application_t *instance)
@@ -286,8 +432,18 @@ void Application_Init(
     instance->outputToChange = StepperOutputToChange_One;
     instance->stepperOnePositionIndex = -1;
     instance->stepperTwoPositionIndex = -1;
-    instance->currentFrequency = 0;
-    instance->workoutStarted = true;
+    instance->waveFrequencyHz = 0;
+    instance->waveAmplitudePercentage = 0.0;
+    instance->shouldOutputWave = false;
+    instance->workoutTime = 0;
+    instance->updateTime = false;
+    instance->calibrationDone = false;
+
+    Input_TimedButtonPress_Init(
+            &instance->timedInput,
+            buttonThree,
+            PeriodToCountTimedPressAfterMs,
+            timerModule);
 
     DacController_Init(
             &instance->dacController,
@@ -296,7 +452,9 @@ void Application_Init(
             GpioSpiCs);
 
     instance->waveformGenerator = WaveformGenerator_Init(&instance->dacController);
+    WaveformGenerator_SetAmplitudePercentage(instance->waveformGenerator, instance->waveAmplitudePercentage);
 
+    EventSubscriber_Synchronous_Init(&instance->timedInputSub, ToggleWaveState, instance);
     EventSubscriber_Synchronous_Init(&instance->buttonOneSubscriber, IncreaseStepperOutput, instance);
     EventSubscriber_Synchronous_Init(&instance->buttonTwoSubscriber, DecreaseStepperOutput, instance);
     EventSubscriber_Synchronous_Init(&instance->buttonThreeSubscriber, SwitchBetweenStepperOneOrTwoControl, instance);
@@ -317,17 +475,26 @@ void Application_Init(
             UpdateLcd,
             instance);
 
+    Timer_Periodic_Init(
+            &instance->activeWorkoutLedTimer,
+            timerModule,
+            PeriodToToggleActiveWorkoutLedMs,
+            ToggleWorkoutLed,
+            instance);
+
     StepperCalibrator_Init(&instance->stepperCalibrator, timerModule);
 
-    EventSubscriber_Synchronous_Init(&instance->calibrationDoneSub, CalibrateStepperTwo, instance);
-    Event_Subscribe(
-            StepperCalibrator_GetOnCalibrationDoneEvent(&instance->stepperCalibrator),
-            &instance->calibrationDoneSub.interface);
+    Event_Subscribe(Input_GetOnChangeEvent(&instance->timedInput.interface), &instance->timedInputSub.interface);
+    Event_Subscribe(Input_GetOnChangeEvent(instance->buttonOne), &instance->buttonOneSubscriber.interface);
+    Event_Subscribe(Input_GetOnChangeEvent(instance->buttonTwo), &instance->buttonTwoSubscriber.interface);
+    Event_Subscribe(Input_GetOnChangeEvent(instance->buttonThree), &instance->buttonThreeSubscriber.interface);
 
-    StepperCalibrator_Calibrate(
-            &instance->stepperCalibrator,
-            instance->stepperMotorOne,
-            instance->stepperOneHomePositionSensor,
-            EnoughStepsForThreeFullRevolutions,
-            StepsToPlaceAtZeroPositionForMotorOne);
+    memcpy(instance->lcdDisplayLine1, "Calibrating...  ", 16);
+    memcpy(instance->lcdDisplayLine2, "                ", 16);
+
+    GpioGroup_SetState(instance->gpioGroup, GpioStatusLed, GpioState_High);
+
+    Timer_Periodic_Start(&instance->writeToLcdTimer);
+
+    StartCalibrationCycle(instance);
 }

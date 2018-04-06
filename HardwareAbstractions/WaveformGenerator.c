@@ -19,17 +19,17 @@ void WaveformGenerator_SetFrequencyInHz(WaveformGenerator_t *_instance, uint16_t
     TBCCR0 = (CountForOneHz / frequency);
 }
 
-void WaveformGenerator_SetAmplitudeDivider(WaveformGenerator_t *_instance, uint16_t divider)
+void WaveformGenerator_SetAmplitudePercentage(WaveformGenerator_t *_instance, float amplitudePercentage)
 {
     IGNORE(_instance);
-    instance.amplitudeDivider = divider;
+    instance.amplitudePercentage = amplitudePercentage;
 }
 
-void WaveformGenerator_Stop(WaveformGenerator_t *_instance)
+void WaveformGenerator_Stop(WaveformGenerator_t *_instance, uint16_t outputDigitalVoltage)
 {
     IGNORE(_instance);
     TimerB0_DisableInterrupt();
-    DacController_SendInputCode(instance.dacController, 0);
+    DacController_SendInputCode(instance.dacController, outputDigitalVoltage);
 }
 
 void WaveformGenerator_Start(WaveformGenerator_t *_instance, const uint16_t *waveform, uint8_t waveformSize)
@@ -47,7 +47,7 @@ WaveformGenerator_t * WaveformGenerator_Init(DacController_t *dacController)
     TimerB0_DisableInterrupt();
     instance.dacController = dacController;
     instance.currentIndex = 0;
-    instance.amplitudeDivider = 1;
+    instance.amplitudePercentage = 0.0;
     DacController_SendInputCode(dacController, 0);
     return &instance;
 }
@@ -62,5 +62,5 @@ __interrupt void TB0_ISR(void)
 
     DacController_SendInputCode(
             instance.dacController,
-            instance.waveform[instance.currentIndex++] / instance.amplitudeDivider);
+            (uint16_t)(instance.waveform[instance.currentIndex++] * instance.amplitudePercentage));
 }

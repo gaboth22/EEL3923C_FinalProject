@@ -5,7 +5,7 @@
 enum
 {
     PeriodToPollSensorMs = 1,
-    PeriodToStartPollingAfterMs = 1000
+    PeriodToStartPollingAfterMs = 500
 };
 
 static void PollSensor(void *context)
@@ -14,7 +14,6 @@ static void PollSensor(void *context)
 
     if(GpioGroup_GetState(instance->gpioGroup, instance->sensorChannel) ==  GpioState_High)
     {
-        Timer_Periodic_Command(&instance->pollSensorTimer, Timer_Periodic_Command_Stop);
         Event_Publish(&instance->onChangeEvent.interface, NULL);
     }
 }

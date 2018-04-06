@@ -19,15 +19,16 @@ Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/Timer/Timer_Pe
 Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_Adc.h
 Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_StepperMotor.h
 Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/Input/I_Input.h
-Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/Controllers/LcdDisplayController.h
-Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_LcdDisplayParallel2Line.h
-Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/Controllers/StepperCalibrator.h
+Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/Input/Input_TimedButtonPress.h
 Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/Event/Event_Synchronous.h
 Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/DataStructures/LinkedList.h
 Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/Timer/Timer_OneShot.h
+Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/Controllers/LcdDisplayController.h
+Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_LcdDisplayParallel2Line.h
+Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/Controllers/StepperCalibrator.h
 Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/WaveformGenerator.h
 Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/GpioTable.h
-Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/Models/SineWave.h
+Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/Data/SineWave.h
 Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/Utilities/utils.h
 
 ../Application.c: 
@@ -49,13 +50,14 @@ Application.obj: /Users/gaboth22/Documents/workspace/FinalProject/Utilities/util
 /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_Adc.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_StepperMotor.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/Input/I_Input.h: 
-/Users/gaboth22/Documents/workspace/FinalProject/Controllers/LcdDisplayController.h: 
-/Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_LcdDisplayParallel2Line.h: 
-/Users/gaboth22/Documents/workspace/FinalProject/Controllers/StepperCalibrator.h: 
+/Users/gaboth22/Documents/workspace/FinalProject/Input/Input_TimedButtonPress.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/Event/Event_Synchronous.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/DataStructures/LinkedList.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/Timer/Timer_OneShot.h: 
+/Users/gaboth22/Documents/workspace/FinalProject/Controllers/LcdDisplayController.h: 
+/Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/I_LcdDisplayParallel2Line.h: 
+/Users/gaboth22/Documents/workspace/FinalProject/Controllers/StepperCalibrator.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/WaveformGenerator.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/HardwareAbstractions/GpioTable.h: 
-/Users/gaboth22/Documents/workspace/FinalProject/Models/SineWave.h: 
+/Users/gaboth22/Documents/workspace/FinalProject/Data/SineWave.h: 
 /Users/gaboth22/Documents/workspace/FinalProject/Utilities/utils.h: 
