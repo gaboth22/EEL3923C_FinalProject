@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker Unix v16.9.6                   
 ******************************************************************************
->> Linked Fri Apr  6 18:02:16 2018
+>> Linked Fri Apr  6 18:55:28 2018
 
 OUTPUT FILE NAME:   <FinalProject.out>
-ENTRY POINT SYMBOL: "_c_int00_noargs_noexit"  address: 0000ab02
+ENTRY POINT SYMBOL: "_c_int00_noargs_noexit"  address: 0000ac68
 
 
 MEMORY CONFIGURATION
@@ -19,7 +19,7 @@ MEMORY CONFIGURATION
   INFOC                 00001040   00000040  00000000  00000040  RWIX
   INFOB                 00001080   00000040  00000000  00000040  RWIX
   INFOA                 000010c0   00000040  00000000  00000040  RWIX
-  FLASH                 00008000   00007fde  00002e8a  00005154  RWIX
+  FLASH                 00008000   00007fde  00002ff2  00004fec  RWIX
   BSLSIGNATURE          0000ffde   00000002  00000002  00000000  RWIX  ffff 
   INT00                 0000ffe0   00000002  00000000  00000002  RWIX
   INT01                 0000ffe2   00000002  00000000  00000002  RWIX
@@ -61,7 +61,7 @@ section   page    origin      length       input sections
                   000005b0    00000002     rts430_eabi.lib : boot.obj (.stack)
                   000005b2    0000004e     --HOLE--
 
-.text      0    00008000    00002d2e     
+.text      0    00008000    00002e94     
                   00008000    000002e8     rts430_eabi.lib : addd.obj (.text:__mspabi_addd)
                   000082e8    0000028a     Application.obj (.text:Application_Init)
                   00008572    00000260     rts430_eabi.lib : frcaddd.obj (.text:__TI_frcaddd)
@@ -71,150 +71,152 @@ section   page    origin      length       input sections
                   00008db6    0000018a     LcdDisplayParallel2Line.obj (.text:SendByteOut)
                   00008f40    0000014a     GpioGroup.obj (.text:GetState)
                   0000908a    00000138     Application.obj (.text:BeginNormalOperation)
-                  000091c2    0000011e     GpioGroup.obj (.text:GpioGroup_Init)
-                  000092e0    00000118     Application.obj (.text:StartCalibrationCycle)
-                  000093f8    00000106     Application.obj (.text:IncreaseStepperOutput)
-                  000094fe    00000104     Application.obj (.text:UpdateLcd)
-                  00009602    000000fe     Application.obj (.text:DecreaseStepperOutput)
-                  00009700    000000c4     rts430_eabi.lib : fs_mpy.obj (.text)
-                  000097c4    000000be     Application.obj (.text:ToggleWaveState)
-                  00009882    000000be     rts430_eabi.lib : renormd.obj (.text:__TI_renormd)
-                  00009940    0000008c                     : cvtdf.obj (.text:__mspabi_cvtdf)
-                  000099cc    00000086     Application.obj (.text:CalibrateStepperTwo)
-                  00009a52    00000084     StepperMotor.obj (.text:StepperMotor_Init)
-                  00009ad6    00000080     LcdDisplayParallel2Line.obj (.text:Busy)
-                  00009b56    00000072     rts430_eabi.lib : cvtfd.obj (.text:__mspabi_cvtfd)
-                  00009bc8    00000070     StepperCalibrator.obj (.text:AttempToMoveToHomePosition)
-                  00009c38    0000006e     Input_TimedButtonPress.obj (.text:Input_TimedButtonPress_Init)
-                  00009ca6    0000006e     rts430_eabi.lib : autoinit.obj (.text:_auto_init)
-                  00009d14    0000006c     LcdDisplayParallel2Line.obj (.text:LcdDisplayParallel2Line_Init)
-                  00009d80    00000066     Input_StepperMotorHomeSensor.obj (.text:Input_StepperMotorHomeSensor_Init)
-                  00009de6    00000066     StepperMotor.obj (.text:TurnAllPwmsOff)
-                  00009e4c    00000062     DacController.obj (.text:DacController_SendInputCode)
-                  00009eae    0000005c     WaveformGenerator.obj (.text:TB0_ISR)
-                  00009f0a    0000005c     rts430_eabi.lib : lsr32.obj (.text:l_lsr_const)
-                  00009f66    0000005a                     : cpy_tbl.obj (.text:copy_in)
-                  00009fc0    00000056     Input_Button.obj (.text:Input_Button_Init)
-                  0000a016    00000056     Application.obj (.text:Uint8To3LenghtString)
-                  0000a06c    00000052     StepperCalibrator.obj (.text:StepperCalibrator_Calibrate)
-                  0000a0be    00000050     StepperCalibrator.obj (.text:StopStepperMotor)
-                  0000a10e    0000004c     Timer_OneShot.obj (.text:CallTimerCallback)
-                  0000a15a    0000004c     rts430_eabi.lib : lsr16.obj (.text)
-                  0000a1a6    0000004a     StepperCalibrator.obj (.text:StepperCalibrator_Init)
-                  0000a1f0    00000048     Application.obj (.text:WriteToSecondLcdLine)
-                  0000a238    00000046     StepperCalibrator.obj (.text:PublishCalibrationDoneEvent)
-                  0000a27e    00000046     rts430_eabi.lib : fs_tou.obj (.text)
-                  0000a2c4    00000044     Application.obj (.text:GetTimeAsString)
-                  0000a308    00000042     Application.obj (.text:MoveCursorToSecondLcdLine)
-                  0000a34a    00000042     Input_Button.obj (.text:PollInput)
-                  0000a38c    00000042     Application.obj (.text:SwitchBetweenStepperOneOrTwoControl)
-                  0000a3ce    00000042     TimerModule.obj (.text:TimerModule_Init)
-                  0000a410    00000040     HeartbeatLed.obj (.text:HeartbeatLed_Init)
-                  0000a450    00000040     Timer_Periodic.obj (.text:Timer_Periodic_Command)
-                  0000a490    0000003e     rts430_eabi.lib : asr32.obj (.text:l_asr_const)
-                  0000a4ce    0000003e                     : lsl32.obj (.text:l_lsl_const)
-                  0000a50c    00000038     Timer_Periodic.obj (.text:CallTimerCallback)
-                  0000a544    00000038     StepperMotor.obj (.text:DoStep)
-                  0000a57c    00000036     Spi.obj (.text:Spi_Init)
-                  0000a5b2    00000036     Timer_OneShot.obj (.text:Timer_OneShot_Start)
-                  0000a5e8    00000036     Timer_Periodic.obj (.text:Timer_Periodic_Start)
-                  0000a61e    00000036     Application.obj (.text:Uint8To2LenghtString)
-                  0000a654    00000032     Input_TimedButtonPress.obj (.text:StartTimedPressTimer)
-                  0000a686    00000030     LinkedList.obj (.text:LinkedList_Remove)
-                  0000a6b6    00000030     Timer_Periodic.obj (.text:Timer_Periodic_Init)
-                  0000a6e6    0000002e     Input_StepperMotorHomeSensor.obj (.text:PollSensor)
-                  0000a714    0000002e     rts430_eabi.lib : subd.obj (.text:__mspabi_subd)
-                  0000a742    0000002c     StepperMotor.obj (.text:Stop)
-                  0000a76e    0000002c     Timer_OneShot.obj (.text:Timer_OneShot_Init)
-                  0000a79a    0000002c     WaveformGenerator.obj (.text:WaveformGenerator_Init)
-                  0000a7c6    0000002c     LcdDisplayParallel2Line.obj (.text:WriteCommand)
-                  0000a7f2    0000002c     LcdDisplayParallel2Line.obj (.text:WriteData)
-                  0000a81e    0000002c     rts430_eabi.lib : asr16.obj (.text)
-                  0000a84a    0000002c                     : div16s.obj (.text)
-                  0000a876    0000002c                     : lsl16.obj (.text)
-                  0000a8a2    0000002a     LcdDisplayController.obj (.text:LcdDisplayController_SetCursorIndex)
-                  0000a8cc    0000002a     TimerModule.obj (.text:TimerModule_Run)
-                  0000a8f6    00000028     Adc_10.obj (.text:Adc_10_Init)
-                  0000a91e    00000028     Timer_OneShot.obj (.text:Timer_OneShot_Stop)
-                  0000a946    00000028     Application.obj (.text:ToggleWorkoutLed)
-                  0000a96e    00000026     HeartbeatLed.obj (.text:ToggleLed)
-                  0000a994    00000024     Interrupt_1MsSystemTick.obj (.text:TA0_ISR)
-                  0000a9b8    00000024     rts430_eabi.lib : fs_utof.obj (.text)
-                  0000a9dc    00000022     LinkedList.obj (.text:LinkedList_Insert)
-                  0000a9fe    00000022     Input_Button.obj (.text:Read)
-                  0000aa20    00000020     LinkedList.obj (.text:LinkedList_ForEach)
-                  0000aa40    00000020     Event_Synchronous.obj (.text:Subscribe)
-                  0000aa60    0000001e     StepperMotor.obj (.text:StopSteps)
-                  0000aa7e    0000001c     Interrupt_1MsSystemTick.obj (.text:Interrupt_1MsSystemTick_Init)
-                  0000aa9a    0000001a     Application.obj (.text:GetHr)
-                  0000aab4    0000001a     LcdDisplayParallel2Line.obj (.text:IsBusy)
-                  0000aace    0000001a     StepperMotor.obj (.text:PublishStepsDoneEvent)
-                  0000aae8    0000001a     WaveformGenerator.obj (.text:WaveformGenerator_Start)
-                  0000ab02    0000001a     rts430_eabi.lib : boot_special.obj (.text:_c_int00_noargs_noexit)
-                  0000ab1c    00000016     EventSubscriber_Synchronous.obj (.text:EventSubscriber_Synchronous_Init)
-                  0000ab32    00000016     Event_Synchronous.obj (.text:Event_Synchronous_Init)
-                  0000ab48    00000016     Interrupt_1MsSystemTick.obj (.text:TimerA0_Init)
-                  0000ab5e    00000016     rts430_eabi.lib : div16u.obj (.text)
-                  0000ab74    00000014     Spi.obj (.text:SendByte)
-                  0000ab88    00000014     rts430_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
-                  0000ab9c    00000014                     : mult16.obj (.text)
-                  0000abb0    00000012     Event_Synchronous.obj (.text:Publish)
-                  0000abc2    00000012     Input_TimedButtonPress.obj (.text:PublishOnTimedPressEvent)
-                  0000abd4    00000012     Application.obj (.text:ReturnCursor)
-                  0000abe6    00000012     Event_Synchronous.obj (.text:Unsubscribe)
-                  0000abf8    00000012     rts430_eabi.lib : lsr32.obj (.text:l_lsr)
-                  0000ac0a    00000012                     : memcpy.obj (.text:memcpy)
-                  0000ac1c    00000010                     : asr32.obj (.text:l_asr)
-                  0000ac2c    00000010                     : lsl32.obj (.text:l_lsl)
-                  0000ac3c    00000010                     : epilog.obj (.text)
-                  0000ac4c    0000000e     Event_Synchronous.obj (.text:CallSubscriberCallback)
-                  0000ac5a    0000000e     DacController.obj (.text:DacController_Init)
-                  0000ac68    0000000e     LcdDisplayController.obj (.text:LcdDisplayController_WriteString)
-                  0000ac76    0000000e     WaveformGenerator.obj (.text:WaveformGenerator_SetFrequencyInHz)
-                  0000ac84    0000000e     WaveformGenerator.obj (.text:WaveformGenerator_Stop)
-                  0000ac92    0000000c     Adc_10.obj (.text:GetAdcCounts)
-                  0000ac9e    0000000a     Input_Button.obj (.text:GetOnChangeEvent)
-                  0000aca8    0000000a     LinkedListNode.obj (.text:LinkedListNode_Init)
-                  0000acb2    0000000a     Input_StepperMotorHomeSensor.obj (.text:StartPolling)
-                  0000acbc    0000000a     TimeSource_Interrupt1MsSystemTick.obj (.text:TimeSource_Interrupt1MsSystemTick_Init)
-                  0000acc6    0000000a     Timer_OneShot.obj (.text:Timer_OneShot_UpdateExpiryTicks)
-                  0000acd0    0000000a     TimerModule.obj (.text:UpdateCount)
-                  0000acda    0000000a     WaveformGenerator.obj (.text:WaveformGenerator_SetAmplitudePercentage)
-                  0000ace4    00000008     Input_StepperMotorHomeSensor.obj (.text:GetOnChangeEvent)
-                  0000acec    00000008     Input_TimedButtonPress.obj (.text:GetOnChangeEvent)
-                  0000acf4    00000008     StepperMotor.obj (.text:GetOnStepDoneEvent)
-                  0000acfc    00000008     rts430_eabi.lib : isr_trap.obj (.text:_isr:__TI_ISR_TRAP)
-                  0000ad04    00000006     StepperMotor.obj (.text:IsBusy)
-                  0000ad0a    00000006     LcdDisplayController.obj (.text:LcdDisplayController_Init)
-                  0000ad10    00000006     LinkedList.obj (.text:LinkedList_Init)
-                  0000ad16    00000006     TimerModule.obj (.text:TimerModule_GetPeriodEvent)
-                  0000ad1c    00000006     rts430_eabi.lib : exit.obj (.text:abort)
-                  0000ad22    00000004                     : pre_init.obj (.text:_system_pre_init)
-                  0000ad26    00000002     Application.obj (.text:Application_Run)
-                  0000ad28    00000002     Input_TimedButtonPress.obj (.text:Read)
-                  0000ad2a    00000002     StepperCalibrator.obj (.text:StepperCalibrator_GetOnCalibrationDoneEvent)
-                  0000ad2c    00000002     rts430_eabi.lib : startup.obj (.text:_system_post_cinit)
+                  000091c2    00000122     Application.obj (.text:DecreaseStepperOutput)
+                  000092e4    00000122     Application.obj (.text:IncreaseStepperOutput)
+                  00009406    0000011e     GpioGroup.obj (.text:GpioGroup_Init)
+                  00009524    00000118     Application.obj (.text:StartCalibrationCycle)
+                  0000963c    00000104     Application.obj (.text:UpdateLcd)
+                  00009740    000000dc     rts430_eabi.lib : cmpd.obj (.text:__mspabi_cmpd)
+                  0000981c    000000c4                     : fs_mpy.obj (.text)
+                  000098e0    000000be     Application.obj (.text:ToggleWaveState)
+                  0000999e    000000be     rts430_eabi.lib : renormd.obj (.text:__TI_renormd)
+                  00009a5c    0000008c                     : cvtdf.obj (.text:__mspabi_cvtdf)
+                  00009ae8    00000086     Application.obj (.text:CalibrateStepperTwo)
+                  00009b6e    00000084     StepperMotor.obj (.text:StepperMotor_Init)
+                  00009bf2    00000080     LcdDisplayParallel2Line.obj (.text:Busy)
+                  00009c72    00000072     rts430_eabi.lib : cvtfd.obj (.text:__mspabi_cvtfd)
+                  00009ce4    00000070     StepperCalibrator.obj (.text:AttempToMoveToHomePosition)
+                  00009d54    0000006e     Input_TimedButtonPress.obj (.text:Input_TimedButtonPress_Init)
+                  00009dc2    0000006e     rts430_eabi.lib : autoinit.obj (.text:_auto_init)
+                  00009e30    0000006c     LcdDisplayParallel2Line.obj (.text:LcdDisplayParallel2Line_Init)
+                  00009e9c    00000066     Input_StepperMotorHomeSensor.obj (.text:Input_StepperMotorHomeSensor_Init)
+                  00009f02    00000066     StepperMotor.obj (.text:TurnAllPwmsOff)
+                  00009f68    00000062     DacController.obj (.text:DacController_SendInputCode)
+                  00009fca    0000005c     WaveformGenerator.obj (.text:TB0_ISR)
+                  0000a026    0000005c     rts430_eabi.lib : lsr32.obj (.text:l_lsr_const)
+                  0000a082    0000005a                     : cpy_tbl.obj (.text:copy_in)
+                  0000a0dc    00000056     Input_Button.obj (.text:Input_Button_Init)
+                  0000a132    00000056     Application.obj (.text:Uint8To3LenghtString)
+                  0000a188    00000052     StepperCalibrator.obj (.text:StepperCalibrator_Calibrate)
+                  0000a1da    00000050     StepperCalibrator.obj (.text:StopStepperMotor)
+                  0000a22a    0000004c     Timer_OneShot.obj (.text:CallTimerCallback)
+                  0000a276    0000004c     rts430_eabi.lib : lsr16.obj (.text)
+                  0000a2c2    0000004a     StepperCalibrator.obj (.text:StepperCalibrator_Init)
+                  0000a30c    0000004a     rts430_eabi.lib : fs_cmp.obj (.text)
+                  0000a356    00000048     Application.obj (.text:WriteToSecondLcdLine)
+                  0000a39e    00000046     StepperCalibrator.obj (.text:PublishCalibrationDoneEvent)
+                  0000a3e4    00000046     rts430_eabi.lib : fs_tou.obj (.text)
+                  0000a42a    00000044     Application.obj (.text:GetTimeAsString)
+                  0000a46e    00000042     Application.obj (.text:MoveCursorToSecondLcdLine)
+                  0000a4b0    00000042     Input_Button.obj (.text:PollInput)
+                  0000a4f2    00000042     Application.obj (.text:SwitchBetweenStepperOneOrTwoControl)
+                  0000a534    00000042     TimerModule.obj (.text:TimerModule_Init)
+                  0000a576    00000040     HeartbeatLed.obj (.text:HeartbeatLed_Init)
+                  0000a5b6    00000040     Timer_Periodic.obj (.text:Timer_Periodic_Command)
+                  0000a5f6    0000003e     rts430_eabi.lib : asr32.obj (.text:l_asr_const)
+                  0000a634    0000003e                     : lsl32.obj (.text:l_lsl_const)
+                  0000a672    00000038     Timer_Periodic.obj (.text:CallTimerCallback)
+                  0000a6aa    00000038     StepperMotor.obj (.text:DoStep)
+                  0000a6e2    00000036     Spi.obj (.text:Spi_Init)
+                  0000a718    00000036     Timer_OneShot.obj (.text:Timer_OneShot_Start)
+                  0000a74e    00000036     Timer_Periodic.obj (.text:Timer_Periodic_Start)
+                  0000a784    00000036     Application.obj (.text:Uint8To2LenghtString)
+                  0000a7ba    00000032     Input_TimedButtonPress.obj (.text:StartTimedPressTimer)
+                  0000a7ec    00000030     LinkedList.obj (.text:LinkedList_Remove)
+                  0000a81c    00000030     Timer_Periodic.obj (.text:Timer_Periodic_Init)
+                  0000a84c    0000002e     Input_StepperMotorHomeSensor.obj (.text:PollSensor)
+                  0000a87a    0000002e     rts430_eabi.lib : subd.obj (.text:__mspabi_subd)
+                  0000a8a8    0000002c     StepperMotor.obj (.text:Stop)
+                  0000a8d4    0000002c     Timer_OneShot.obj (.text:Timer_OneShot_Init)
+                  0000a900    0000002c     WaveformGenerator.obj (.text:WaveformGenerator_Init)
+                  0000a92c    0000002c     LcdDisplayParallel2Line.obj (.text:WriteCommand)
+                  0000a958    0000002c     LcdDisplayParallel2Line.obj (.text:WriteData)
+                  0000a984    0000002c     rts430_eabi.lib : asr16.obj (.text)
+                  0000a9b0    0000002c                     : div16s.obj (.text)
+                  0000a9dc    0000002c                     : lsl16.obj (.text)
+                  0000aa08    0000002a     LcdDisplayController.obj (.text:LcdDisplayController_SetCursorIndex)
+                  0000aa32    0000002a     TimerModule.obj (.text:TimerModule_Run)
+                  0000aa5c    00000028     Adc_10.obj (.text:Adc_10_Init)
+                  0000aa84    00000028     Timer_OneShot.obj (.text:Timer_OneShot_Stop)
+                  0000aaac    00000028     Application.obj (.text:ToggleWorkoutLed)
+                  0000aad4    00000026     HeartbeatLed.obj (.text:ToggleLed)
+                  0000aafa    00000024     Interrupt_1MsSystemTick.obj (.text:TA0_ISR)
+                  0000ab1e    00000024     rts430_eabi.lib : fs_utof.obj (.text)
+                  0000ab42    00000022     LinkedList.obj (.text:LinkedList_Insert)
+                  0000ab64    00000022     Input_Button.obj (.text:Read)
+                  0000ab86    00000020     LinkedList.obj (.text:LinkedList_ForEach)
+                  0000aba6    00000020     Event_Synchronous.obj (.text:Subscribe)
+                  0000abc6    0000001e     StepperMotor.obj (.text:StopSteps)
+                  0000abe4    0000001c     Interrupt_1MsSystemTick.obj (.text:Interrupt_1MsSystemTick_Init)
+                  0000ac00    0000001a     Application.obj (.text:GetHr)
+                  0000ac1a    0000001a     LcdDisplayParallel2Line.obj (.text:IsBusy)
+                  0000ac34    0000001a     StepperMotor.obj (.text:PublishStepsDoneEvent)
+                  0000ac4e    0000001a     WaveformGenerator.obj (.text:WaveformGenerator_Start)
+                  0000ac68    0000001a     rts430_eabi.lib : boot_special.obj (.text:_c_int00_noargs_noexit)
+                  0000ac82    00000016     EventSubscriber_Synchronous.obj (.text:EventSubscriber_Synchronous_Init)
+                  0000ac98    00000016     Event_Synchronous.obj (.text:Event_Synchronous_Init)
+                  0000acae    00000016     Interrupt_1MsSystemTick.obj (.text:TimerA0_Init)
+                  0000acc4    00000016     rts430_eabi.lib : div16u.obj (.text)
+                  0000acda    00000014     Spi.obj (.text:SendByte)
+                  0000acee    00000014     rts430_eabi.lib : copy_zero_init.obj (.text:decompress:ZI:__TI_zero_init)
+                  0000ad02    00000014                     : mult16.obj (.text)
+                  0000ad16    00000012     Event_Synchronous.obj (.text:Publish)
+                  0000ad28    00000012     Input_TimedButtonPress.obj (.text:PublishOnTimedPressEvent)
+                  0000ad3a    00000012     Application.obj (.text:ReturnCursor)
+                  0000ad4c    00000012     Event_Synchronous.obj (.text:Unsubscribe)
+                  0000ad5e    00000012     rts430_eabi.lib : lsr32.obj (.text:l_lsr)
+                  0000ad70    00000012                     : memcpy.obj (.text:memcpy)
+                  0000ad82    00000010                     : asr32.obj (.text:l_asr)
+                  0000ad92    00000010                     : lsl32.obj (.text:l_lsl)
+                  0000ada2    00000010                     : epilog.obj (.text)
+                  0000adb2    0000000e     Event_Synchronous.obj (.text:CallSubscriberCallback)
+                  0000adc0    0000000e     DacController.obj (.text:DacController_Init)
+                  0000adce    0000000e     LcdDisplayController.obj (.text:LcdDisplayController_WriteString)
+                  0000addc    0000000e     WaveformGenerator.obj (.text:WaveformGenerator_SetFrequencyInHz)
+                  0000adea    0000000e     WaveformGenerator.obj (.text:WaveformGenerator_Stop)
+                  0000adf8    0000000c     Adc_10.obj (.text:GetAdcCounts)
+                  0000ae04    0000000a     Input_Button.obj (.text:GetOnChangeEvent)
+                  0000ae0e    0000000a     LinkedListNode.obj (.text:LinkedListNode_Init)
+                  0000ae18    0000000a     Input_StepperMotorHomeSensor.obj (.text:StartPolling)
+                  0000ae22    0000000a     TimeSource_Interrupt1MsSystemTick.obj (.text:TimeSource_Interrupt1MsSystemTick_Init)
+                  0000ae2c    0000000a     Timer_OneShot.obj (.text:Timer_OneShot_UpdateExpiryTicks)
+                  0000ae36    0000000a     TimerModule.obj (.text:UpdateCount)
+                  0000ae40    0000000a     WaveformGenerator.obj (.text:WaveformGenerator_SetAmplitudePercentage)
+                  0000ae4a    00000008     Input_StepperMotorHomeSensor.obj (.text:GetOnChangeEvent)
+                  0000ae52    00000008     Input_TimedButtonPress.obj (.text:GetOnChangeEvent)
+                  0000ae5a    00000008     StepperMotor.obj (.text:GetOnStepDoneEvent)
+                  0000ae62    00000008     rts430_eabi.lib : isr_trap.obj (.text:_isr:__TI_ISR_TRAP)
+                  0000ae6a    00000006     StepperMotor.obj (.text:IsBusy)
+                  0000ae70    00000006     LcdDisplayController.obj (.text:LcdDisplayController_Init)
+                  0000ae76    00000006     LinkedList.obj (.text:LinkedList_Init)
+                  0000ae7c    00000006     TimerModule.obj (.text:TimerModule_GetPeriodEvent)
+                  0000ae82    00000006     rts430_eabi.lib : exit.obj (.text:abort)
+                  0000ae88    00000004                     : pre_init.obj (.text:_system_pre_init)
+                  0000ae8c    00000002     Application.obj (.text:Application_Run)
+                  0000ae8e    00000002     Input_TimedButtonPress.obj (.text:Read)
+                  0000ae90    00000002     StepperCalibrator.obj (.text:StepperCalibrator_GetOnCalibrationDoneEvent)
+                  0000ae92    00000002     rts430_eabi.lib : startup.obj (.text:_system_post_cinit)
 
-.const     0    0000ad2e    00000152     
-                  0000ad2e    00000098     Application.obj (.const:.string)
-                  0000adc6    00000078     Application.obj (.const:sineWave)
-                  0000ae3e    00000014     Application.obj (.const:.string:stepperStepsPerSubdivision)
-                  0000ae52    00000008     StepperMotor.obj (.const:api)
-                  0000ae5a    00000006     Event_Synchronous.obj (.const:eventSynchronousApi)
-                  0000ae60    00000006     LcdDisplayParallel2Line.obj (.const:lcdDisplayParallel2LineAlarmClockApi)
-                  0000ae66    00000005     LcdDisplayParallel2Line.obj (.const:.string:initCommands$1)
-                  0000ae6b    00000001     Application.obj (.const)
-                  0000ae6c    00000004     Input_TimedButtonPress.obj (.const:api)
-                  0000ae70    00000004     GpioGroup.obj (.const:gpioGroupApi)
-                  0000ae74    00000004     Input_Button.obj (.const:inputButtonApi)
-                  0000ae78    00000004     Input_StepperMotorHomeSensor.obj (.const:speedDisplaySensorInputApi)
-                  0000ae7c    00000002     Adc_10.obj (.const:adc10Api)
-                  0000ae7e    00000002     Spi.obj (.const:api)
+.const     0    0000ae94    00000154     
+                  0000ae94    0000009a     Application.obj (.const:.string)
+                  0000af2e    00000078     Application.obj (.const:sineWave)
+                  0000afa6    00000014     Application.obj (.const:.string:stepperStepsPerSubdivision)
+                  0000afba    00000008     StepperMotor.obj (.const:api)
+                  0000afc2    00000006     Event_Synchronous.obj (.const:eventSynchronousApi)
+                  0000afc8    00000006     LcdDisplayParallel2Line.obj (.const:lcdDisplayParallel2LineAlarmClockApi)
+                  0000afce    00000005     LcdDisplayParallel2Line.obj (.const:.string:initCommands$1)
+                  0000afd3    00000001     Application.obj (.const)
+                  0000afd4    00000004     Input_TimedButtonPress.obj (.const:api)
+                  0000afd8    00000004     GpioGroup.obj (.const:gpioGroupApi)
+                  0000afdc    00000004     Input_Button.obj (.const:inputButtonApi)
+                  0000afe0    00000004     Input_StepperMotorHomeSensor.obj (.const:speedDisplaySensorInputApi)
+                  0000afe4    00000002     Adc_10.obj (.const:adc10Api)
+                  0000afe6    00000002     Spi.obj (.const:api)
 
-.cinit     0    0000ae80    0000000a     
-                  0000ae80    00000004     (.cinit..bss.load) [load image, compression = zero_init]
-                  0000ae84    00000002     (__TI_handler_table)
-                  0000ae86    00000004     (__TI_cinit_table)
+.cinit     0    0000afe8    0000000a     
+                  0000afe8    00000004     (.cinit..bss.load) [load image, compression = zero_init]
+                  0000afec    00000002     (__TI_handler_table)
+                  0000afee    00000004     (__TI_cinit_table)
 
 .binit     0    00008000    00000000     
 
@@ -267,10 +269,10 @@ MODULE SUMMARY
        Module                                  code    ro data   rw data
        ------                                  ----    -------   -------
     ./
-       Application.obj                         2840    293       0      
+       Application.obj                         2904    295       0      
        main.obj                                454     0         0      
     +--+---------------------------------------+-------+---------+---------+
-       Total:                                  3294    293       0      
+       Total:                                  3358    295       0      
                                                                         
     ./Controllers/
        StepperCalibrator.obj                   420     0         0      
@@ -325,6 +327,7 @@ MODULE SUMMARY
     /Applications/ti/ccsv7/tools/compiler/ti-cgt-msp430_16.9.6.LTS/lib/rts430_eabi.lib
        addd.obj                                744     0         0      
        frcaddd.obj                             608     0         0      
+       cmpd.obj                                220     0         0      
        fs_mpy.obj                              196     0         0      
        renormd.obj                             190     0         0      
        cvtdf.obj                               140     0         0      
@@ -335,6 +338,7 @@ MODULE SUMMARY
        asr32.obj                               78      0         0      
        lsl32.obj                               78      0         0      
        lsr16.obj                               76      0         0      
+       fs_cmp.obj                              74      0         0      
        fs_tou.obj                              70      0         0      
        subd.obj                                46      0         0      
        asr16.obj                               44      0         0      
@@ -362,23 +366,23 @@ MODULE SUMMARY
        int14.obj                               0       2         0      
        startup.obj                             2       0         0      
     +--+---------------------------------------+-------+---------+---------+
-       Total:                                  2960    20        0      
+       Total:                                  3254    20        0      
                                                                         
        Stack:                                  0       0         80     
        Linker Generated:                       0       10        0      
     +--+---------------------------------------+-------+---------+---------+
-       Grand Total:                            11566   372       182    
+       Grand Total:                            11924   374       182    
 
 
 LINKER GENERATED COPY TABLES
 
-__TI_cinit_table @ 0000ae86 records: 1, size/record: 4, table size: 4
-	.bss: load addr=0000ae80, load size=00000004 bytes, run addr=00000200, run size=00000066 bytes, compression=zero_init
+__TI_cinit_table @ 0000afee records: 1, size/record: 4, table size: 4
+	.bss: load addr=0000afe8, load size=00000004 bytes, run addr=00000200, run size=00000066 bytes, compression=zero_init
 
 
 LINKER GENERATED HANDLER TABLE
 
-__TI_handler_table @ 0000ae84 records: 1, size/record: 2, table size: 2
+__TI_handler_table @ 0000afec records: 1, size/record: 2, table size: 2
 	index: 0, handler: __TI_zero_init
 
 
@@ -394,13 +398,13 @@ address   name
 00000049  ADC10DTC1                                  
 000001b4  ADC10MEM                                   
 000001bc  ADC10SA                                    
-0000a8f6  Adc_10_Init                                
+0000aa5c  Adc_10_Init                                
 000082e8  Application_Init                           
-0000ad26  Application_Run                            
+0000ae8c  Application_Run                            
 00000057  BCSCTL1                                    
 00000058  BCSCTL2                                    
 00000053  BCSCTL3                                    
-0000ad1c  C$$EXIT                                    
+0000ae82  C$$EXIT                                    
 000010fb  CALBC1_12MHZ                               
 000010f9  CALBC1_16MHZ                               
 000010ff  CALBC1_1MHZ                                
@@ -410,32 +414,32 @@ address   name
 000010fe  CALDCO_1MHZ                                
 000010fc  CALDCO_8MHZ                                
 00000056  DCOCTL                                     
-0000ac5a  DacController_Init                         
-00009e4c  DacController_SendInputCode                
-0000ab1c  EventSubscriber_Synchronous_Init           
-0000ab32  Event_Synchronous_Init                     
+0000adc0  DacController_Init                         
+00009f68  DacController_SendInputCode                
+0000ac82  EventSubscriber_Synchronous_Init           
+0000ac98  Event_Synchronous_Init                     
 00000128  FCTL1                                      
 0000012a  FCTL2                                      
 0000012c  FCTL3                                      
-000091c2  GpioGroup_Init                             
-0000a410  HeartbeatLed_Init                          
+00009406  GpioGroup_Init                             
+0000a576  HeartbeatLed_Init                          
 00000000  IE1                                        
 00000001  IE2                                        
 00000002  IFG1                                       
 00000003  IFG2                                       
-00009fc0  Input_Button_Init                          
-00009d80  Input_StepperMotorHomeSensor_Init          
-00009c38  Input_TimedButtonPress_Init                
-0000aa7e  Interrupt_1MsSystemTick_Init               
-0000ad0a  LcdDisplayController_Init                  
-0000a8a2  LcdDisplayController_SetCursorIndex        
-0000ac68  LcdDisplayController_WriteString           
-00009d14  LcdDisplayParallel2Line_Init               
-0000aca8  LinkedListNode_Init                        
-0000aa20  LinkedList_ForEach                         
-0000ad10  LinkedList_Init                            
-0000a9dc  LinkedList_Insert                          
-0000a686  LinkedList_Remove                          
+0000a0dc  Input_Button_Init                          
+00009e9c  Input_StepperMotorHomeSensor_Init          
+00009d54  Input_TimedButtonPress_Init                
+0000abe4  Interrupt_1MsSystemTick_Init               
+0000ae70  LcdDisplayController_Init                  
+0000aa08  LcdDisplayController_SetCursorIndex        
+0000adce  LcdDisplayController_WriteString           
+00009e30  LcdDisplayParallel2Line_Init               
+0000ae0e  LinkedListNode_Init                        
+0000ab86  LinkedList_ForEach                         
+0000ae76  LinkedList_Init                            
+0000ab42  LinkedList_Insert                          
+0000a7ec  LinkedList_Remove                          
 000000c0  OA0CTL0                                    
 000000c1  OA0CTL1                                    
 000000c2  OA1CTL0                                    
@@ -466,12 +470,12 @@ address   name
 0000001d  P4OUT                                      
 00000011  P4REN                                      
 0000001f  P4SEL                                      
-0000a57c  Spi_Init                                   
-0000a06c  StepperCalibrator_Calibrate                
-0000ad2a  StepperCalibrator_GetOnCalibrationDoneEvent
-0000a1a6  StepperCalibrator_Init                     
-00009a52  StepperMotor_Init                          
-0000a994  TA0_ISR                                    
+0000a6e2  Spi_Init                                   
+0000a188  StepperCalibrator_Calibrate                
+0000ae90  StepperCalibrator_GetOnCalibrationDoneEvent
+0000a2c2  StepperCalibrator_Init                     
+00009b6e  StepperMotor_Init                          
+0000aafa  TA0_ISR                                    
 00000172  TACCR0                                     
 00000174  TACCR1                                     
 00000176  TACCR2                                     
@@ -481,7 +485,7 @@ address   name
 00000160  TACTL                                      
 0000012e  TAIV                                       
 00000170  TAR                                        
-00009eae  TB0_ISR                                    
+00009fca  TB0_ISR                                    
 00000192  TBCCR0                                     
 00000194  TBCCR1                                     
 00000196  TBCCR2                                     
@@ -491,17 +495,17 @@ address   name
 00000180  TBCTL                                      
 0000011e  TBIV                                       
 00000190  TBR                                        
-0000acbc  TimeSource_Interrupt1MsSystemTick_Init     
-0000ad16  TimerModule_GetPeriodEvent                 
-0000a3ce  TimerModule_Init                           
-0000a8cc  TimerModule_Run                            
-0000a76e  Timer_OneShot_Init                         
-0000a5b2  Timer_OneShot_Start                        
-0000a91e  Timer_OneShot_Stop                         
-0000acc6  Timer_OneShot_UpdateExpiryTicks            
-0000a450  Timer_Periodic_Command                     
-0000a6b6  Timer_Periodic_Init                        
-0000a5e8  Timer_Periodic_Start                       
+0000ae22  TimeSource_Interrupt1MsSystemTick_Init     
+0000ae7c  TimerModule_GetPeriodEvent                 
+0000a534  TimerModule_Init                           
+0000aa32  TimerModule_Run                            
+0000a8d4  Timer_OneShot_Init                         
+0000a718  Timer_OneShot_Start                        
+0000aa84  Timer_OneShot_Stop                         
+0000ae2c  Timer_OneShot_UpdateExpiryTicks            
+0000a5b6  Timer_Periodic_Command                     
+0000a81c  Timer_Periodic_Init                        
+0000a74e  Timer_Periodic_Start                       
 0000005d  UCA0ABCTL                                  
 00000062  UCA0BR0                                    
 00000063  UCA0BR1                                    
@@ -524,22 +528,22 @@ address   name
 0000006d  UCB0STAT                                   
 0000006f  UCB0TXBUF                                  
 00000120  WDTCTL                                     
-0000a79a  WaveformGenerator_Init                     
-0000acda  WaveformGenerator_SetAmplitudePercentage   
-0000ac76  WaveformGenerator_SetFrequencyInHz         
-0000aae8  WaveformGenerator_Start                    
-0000ac84  WaveformGenerator_Stop                     
+0000a900  WaveformGenerator_Init                     
+0000ae40  WaveformGenerator_SetAmplitudePercentage   
+0000addc  WaveformGenerator_SetFrequencyInHz         
+0000ac4e  WaveformGenerator_Start                    
+0000adea  WaveformGenerator_Stop                     
 00000600  __STACK_END                                
 00000050  __STACK_SIZE                               
 UNDEFED   __TI_BINIT_Base                            
 UNDEFED   __TI_BINIT_Limit                           
-0000ae86  __TI_CINIT_Base                            
-0000ae8a  __TI_CINIT_Limit                           
-0000ae84  __TI_Handler_Table_Base                    
-0000ae86  __TI_Handler_Table_Limit                   
+0000afee  __TI_CINIT_Base                            
+0000aff2  __TI_CINIT_Limit                           
+0000afec  __TI_Handler_Table_Base                    
+0000afee  __TI_Handler_Table_Limit                   
 UNDEFED   __TI_INITARRAY_Base                        
 UNDEFED   __TI_INITARRAY_Limit                       
-0000acfc  __TI_ISR_TRAP                              
+0000ae62  __TI_ISR_TRAP                              
 00008572  __TI_frcaddd                               
 0000ffe4  __TI_int02                                 
 0000ffe6  __TI_int03                                 
@@ -555,138 +559,140 @@ UNDEFED   __TI_INITARRAY_Limit
 ffffffff  __TI_pprof_out_hndl                        
 ffffffff  __TI_prof_data_size                        
 ffffffff  __TI_prof_data_start                       
-00009882  __TI_renormd                               
-0000ab88  __TI_zero_init                             
+0000999e  __TI_renormd                               
+0000acee  __TI_zero_init                             
 ffffffff  __c_args__                                 
 00008000  __mspabi_addd                              
-00009940  __mspabi_cvtdf                             
-00009b56  __mspabi_cvtfd                             
-0000a84a  __mspabi_divi                              
-0000ab5e  __mspabi_divu                              
-0000a27e  __mspabi_fixfu                             
-0000a9b8  __mspabi_fltuf                             
-0000ac48  __mspabi_func_epilog_1                     
-0000ac46  __mspabi_func_epilog_2                     
-0000ac44  __mspabi_func_epilog_3                     
-0000ac42  __mspabi_func_epilog_4                     
-0000ac40  __mspabi_func_epilog_5                     
-0000ac3e  __mspabi_func_epilog_6                     
-0000ac3c  __mspabi_func_epilog_7                     
-00009700  __mspabi_mpyf                              
-0000ab9c  __mspabi_mpyi                              
-0000ab9c  __mspabi_mpyi_sw                           
-0000a84a  __mspabi_remi                              
-0000ab5e  __mspabi_remu                              
-0000a876  __mspabi_slli                              
-0000a89e  __mspabi_slli_1                            
-0000a88c  __mspabi_slli_10                           
-0000a88a  __mspabi_slli_11                           
-0000a888  __mspabi_slli_12                           
-0000a886  __mspabi_slli_13                           
-0000a884  __mspabi_slli_14                           
-0000a882  __mspabi_slli_15                           
-0000a89c  __mspabi_slli_2                            
-0000a89a  __mspabi_slli_3                            
-0000a898  __mspabi_slli_4                            
-0000a896  __mspabi_slli_5                            
-0000a894  __mspabi_slli_6                            
-0000a892  __mspabi_slli_7                            
-0000a890  __mspabi_slli_8                            
-0000a88e  __mspabi_slli_9                            
-0000ac2c  __mspabi_slll                              
-0000a506  __mspabi_slll_1                            
-0000a4e2  __mspabi_slll_10                           
-0000a4de  __mspabi_slll_11                           
-0000a4da  __mspabi_slll_12                           
-0000a4d6  __mspabi_slll_13                           
-0000a4d2  __mspabi_slll_14                           
-0000a4ce  __mspabi_slll_15                           
-0000a502  __mspabi_slll_2                            
-0000a4fe  __mspabi_slll_3                            
-0000a4fa  __mspabi_slll_4                            
-0000a4f6  __mspabi_slll_5                            
-0000a4f2  __mspabi_slll_6                            
-0000a4ee  __mspabi_slll_7                            
-0000a4ea  __mspabi_slll_8                            
-0000a4e6  __mspabi_slll_9                            
-0000a81e  __mspabi_srai                              
-0000a846  __mspabi_srai_1                            
-0000a834  __mspabi_srai_10                           
-0000a832  __mspabi_srai_11                           
-0000a830  __mspabi_srai_12                           
-0000a82e  __mspabi_srai_13                           
-0000a82c  __mspabi_srai_14                           
-0000a82a  __mspabi_srai_15                           
-0000a844  __mspabi_srai_2                            
-0000a842  __mspabi_srai_3                            
-0000a840  __mspabi_srai_4                            
-0000a83e  __mspabi_srai_5                            
-0000a83c  __mspabi_srai_6                            
-0000a83a  __mspabi_srai_7                            
-0000a838  __mspabi_srai_8                            
-0000a836  __mspabi_srai_9                            
-0000ac1c  __mspabi_sral                              
-0000a4c8  __mspabi_sral_1                            
-0000a4a4  __mspabi_sral_10                           
-0000a4a0  __mspabi_sral_11                           
-0000a49c  __mspabi_sral_12                           
-0000a498  __mspabi_sral_13                           
-0000a494  __mspabi_sral_14                           
-0000a490  __mspabi_sral_15                           
-0000a4c4  __mspabi_sral_2                            
-0000a4c0  __mspabi_sral_3                            
-0000a4bc  __mspabi_sral_4                            
-0000a4b8  __mspabi_sral_5                            
-0000a4b4  __mspabi_sral_6                            
-0000a4b0  __mspabi_sral_7                            
-0000a4ac  __mspabi_sral_8                            
-0000a4a8  __mspabi_sral_9                            
-0000a15a  __mspabi_srli                              
-0000a1a0  __mspabi_srli_1                            
-0000a17c  __mspabi_srli_10                           
-0000a178  __mspabi_srli_11                           
-0000a174  __mspabi_srli_12                           
-0000a170  __mspabi_srli_13                           
-0000a16c  __mspabi_srli_14                           
-0000a168  __mspabi_srli_15                           
-0000a19c  __mspabi_srli_2                            
-0000a198  __mspabi_srli_3                            
-0000a194  __mspabi_srli_4                            
-0000a190  __mspabi_srli_5                            
-0000a18c  __mspabi_srli_6                            
-0000a188  __mspabi_srli_7                            
-0000a184  __mspabi_srli_8                            
-0000a180  __mspabi_srli_9                            
-0000abf8  __mspabi_srll                              
-00009f5e  __mspabi_srll_1                            
-00009f28  __mspabi_srll_10                           
-00009f22  __mspabi_srll_11                           
-00009f1c  __mspabi_srll_12                           
-00009f16  __mspabi_srll_13                           
-00009f10  __mspabi_srll_14                           
-00009f0a  __mspabi_srll_15                           
-00009f58  __mspabi_srll_2                            
-00009f52  __mspabi_srll_3                            
-00009f4c  __mspabi_srll_4                            
-00009f46  __mspabi_srll_5                            
-00009f40  __mspabi_srll_6                            
-00009f3a  __mspabi_srll_7                            
-00009f34  __mspabi_srll_8                            
-00009f2e  __mspabi_srll_9                            
-0000a714  __mspabi_subd                              
-00009ca6  _auto_init                                 
-0000ab02  _c_int00_noargs_noexit                     
+00009740  __mspabi_cmpd                              
+0000a30c  __mspabi_cmpf                              
+00009a5c  __mspabi_cvtdf                             
+00009c72  __mspabi_cvtfd                             
+0000a9b0  __mspabi_divi                              
+0000acc4  __mspabi_divu                              
+0000a3e4  __mspabi_fixfu                             
+0000ab1e  __mspabi_fltuf                             
+0000adae  __mspabi_func_epilog_1                     
+0000adac  __mspabi_func_epilog_2                     
+0000adaa  __mspabi_func_epilog_3                     
+0000ada8  __mspabi_func_epilog_4                     
+0000ada6  __mspabi_func_epilog_5                     
+0000ada4  __mspabi_func_epilog_6                     
+0000ada2  __mspabi_func_epilog_7                     
+0000981c  __mspabi_mpyf                              
+0000ad02  __mspabi_mpyi                              
+0000ad02  __mspabi_mpyi_sw                           
+0000a9b0  __mspabi_remi                              
+0000acc4  __mspabi_remu                              
+0000a9dc  __mspabi_slli                              
+0000aa04  __mspabi_slli_1                            
+0000a9f2  __mspabi_slli_10                           
+0000a9f0  __mspabi_slli_11                           
+0000a9ee  __mspabi_slli_12                           
+0000a9ec  __mspabi_slli_13                           
+0000a9ea  __mspabi_slli_14                           
+0000a9e8  __mspabi_slli_15                           
+0000aa02  __mspabi_slli_2                            
+0000aa00  __mspabi_slli_3                            
+0000a9fe  __mspabi_slli_4                            
+0000a9fc  __mspabi_slli_5                            
+0000a9fa  __mspabi_slli_6                            
+0000a9f8  __mspabi_slli_7                            
+0000a9f6  __mspabi_slli_8                            
+0000a9f4  __mspabi_slli_9                            
+0000ad92  __mspabi_slll                              
+0000a66c  __mspabi_slll_1                            
+0000a648  __mspabi_slll_10                           
+0000a644  __mspabi_slll_11                           
+0000a640  __mspabi_slll_12                           
+0000a63c  __mspabi_slll_13                           
+0000a638  __mspabi_slll_14                           
+0000a634  __mspabi_slll_15                           
+0000a668  __mspabi_slll_2                            
+0000a664  __mspabi_slll_3                            
+0000a660  __mspabi_slll_4                            
+0000a65c  __mspabi_slll_5                            
+0000a658  __mspabi_slll_6                            
+0000a654  __mspabi_slll_7                            
+0000a650  __mspabi_slll_8                            
+0000a64c  __mspabi_slll_9                            
+0000a984  __mspabi_srai                              
+0000a9ac  __mspabi_srai_1                            
+0000a99a  __mspabi_srai_10                           
+0000a998  __mspabi_srai_11                           
+0000a996  __mspabi_srai_12                           
+0000a994  __mspabi_srai_13                           
+0000a992  __mspabi_srai_14                           
+0000a990  __mspabi_srai_15                           
+0000a9aa  __mspabi_srai_2                            
+0000a9a8  __mspabi_srai_3                            
+0000a9a6  __mspabi_srai_4                            
+0000a9a4  __mspabi_srai_5                            
+0000a9a2  __mspabi_srai_6                            
+0000a9a0  __mspabi_srai_7                            
+0000a99e  __mspabi_srai_8                            
+0000a99c  __mspabi_srai_9                            
+0000ad82  __mspabi_sral                              
+0000a62e  __mspabi_sral_1                            
+0000a60a  __mspabi_sral_10                           
+0000a606  __mspabi_sral_11                           
+0000a602  __mspabi_sral_12                           
+0000a5fe  __mspabi_sral_13                           
+0000a5fa  __mspabi_sral_14                           
+0000a5f6  __mspabi_sral_15                           
+0000a62a  __mspabi_sral_2                            
+0000a626  __mspabi_sral_3                            
+0000a622  __mspabi_sral_4                            
+0000a61e  __mspabi_sral_5                            
+0000a61a  __mspabi_sral_6                            
+0000a616  __mspabi_sral_7                            
+0000a612  __mspabi_sral_8                            
+0000a60e  __mspabi_sral_9                            
+0000a276  __mspabi_srli                              
+0000a2bc  __mspabi_srli_1                            
+0000a298  __mspabi_srli_10                           
+0000a294  __mspabi_srli_11                           
+0000a290  __mspabi_srli_12                           
+0000a28c  __mspabi_srli_13                           
+0000a288  __mspabi_srli_14                           
+0000a284  __mspabi_srli_15                           
+0000a2b8  __mspabi_srli_2                            
+0000a2b4  __mspabi_srli_3                            
+0000a2b0  __mspabi_srli_4                            
+0000a2ac  __mspabi_srli_5                            
+0000a2a8  __mspabi_srli_6                            
+0000a2a4  __mspabi_srli_7                            
+0000a2a0  __mspabi_srli_8                            
+0000a29c  __mspabi_srli_9                            
+0000ad5e  __mspabi_srll                              
+0000a07a  __mspabi_srll_1                            
+0000a044  __mspabi_srll_10                           
+0000a03e  __mspabi_srll_11                           
+0000a038  __mspabi_srll_12                           
+0000a032  __mspabi_srll_13                           
+0000a02c  __mspabi_srll_14                           
+0000a026  __mspabi_srll_15                           
+0000a074  __mspabi_srll_2                            
+0000a06e  __mspabi_srll_3                            
+0000a068  __mspabi_srll_4                            
+0000a062  __mspabi_srll_5                            
+0000a05c  __mspabi_srll_6                            
+0000a056  __mspabi_srll_7                            
+0000a050  __mspabi_srll_8                            
+0000a04a  __mspabi_srll_9                            
+0000a87a  __mspabi_subd                              
+00009dc2  _auto_init                                 
+0000ac68  _c_int00_noargs_noexit                     
 0000fffe  _reset_vector                              
 000005b0  _stack                                     
-0000ad2c  _system_post_cinit                         
-0000ad22  _system_pre_init                           
-0000ad1c  abort                                      
-00009f66  copy_in                                    
+0000ae92  _system_post_cinit                         
+0000ae88  _system_pre_init                           
+0000ae82  abort                                      
+0000a082  copy_in                                    
 00008bf0  main                                       
-0000ac0a  memcpy                                     
-0000adc6  sineWave                                   
-0000ae6b  sineWaveLookupSize                         
-0000ae78  speedDisplaySensorInputApi                 
+0000ad70  memcpy                                     
+0000af2e  sineWave                                   
+0000afd3  sineWaveLookupSize                         
+0000afe0  speedDisplaySensorInputApi                 
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -797,183 +803,185 @@ address   name
 000082e8  Application_Init                           
 00008572  __TI_frcaddd                               
 00008bf0  main                                       
-000091c2  GpioGroup_Init                             
-00009700  __mspabi_mpyf                              
-00009882  __TI_renormd                               
-00009940  __mspabi_cvtdf                             
-00009a52  StepperMotor_Init                          
-00009b56  __mspabi_cvtfd                             
-00009c38  Input_TimedButtonPress_Init                
-00009ca6  _auto_init                                 
-00009d14  LcdDisplayParallel2Line_Init               
-00009d80  Input_StepperMotorHomeSensor_Init          
-00009e4c  DacController_SendInputCode                
-00009eae  TB0_ISR                                    
-00009f0a  __mspabi_srll_15                           
-00009f10  __mspabi_srll_14                           
-00009f16  __mspabi_srll_13                           
-00009f1c  __mspabi_srll_12                           
-00009f22  __mspabi_srll_11                           
-00009f28  __mspabi_srll_10                           
-00009f2e  __mspabi_srll_9                            
-00009f34  __mspabi_srll_8                            
-00009f3a  __mspabi_srll_7                            
-00009f40  __mspabi_srll_6                            
-00009f46  __mspabi_srll_5                            
-00009f4c  __mspabi_srll_4                            
-00009f52  __mspabi_srll_3                            
-00009f58  __mspabi_srll_2                            
-00009f5e  __mspabi_srll_1                            
-00009f66  copy_in                                    
-00009fc0  Input_Button_Init                          
-0000a06c  StepperCalibrator_Calibrate                
-0000a15a  __mspabi_srli                              
-0000a168  __mspabi_srli_15                           
-0000a16c  __mspabi_srli_14                           
-0000a170  __mspabi_srli_13                           
-0000a174  __mspabi_srli_12                           
-0000a178  __mspabi_srli_11                           
-0000a17c  __mspabi_srli_10                           
-0000a180  __mspabi_srli_9                            
-0000a184  __mspabi_srli_8                            
-0000a188  __mspabi_srli_7                            
-0000a18c  __mspabi_srli_6                            
-0000a190  __mspabi_srli_5                            
-0000a194  __mspabi_srli_4                            
-0000a198  __mspabi_srli_3                            
-0000a19c  __mspabi_srli_2                            
-0000a1a0  __mspabi_srli_1                            
-0000a1a6  StepperCalibrator_Init                     
-0000a27e  __mspabi_fixfu                             
-0000a3ce  TimerModule_Init                           
-0000a410  HeartbeatLed_Init                          
-0000a450  Timer_Periodic_Command                     
-0000a490  __mspabi_sral_15                           
-0000a494  __mspabi_sral_14                           
-0000a498  __mspabi_sral_13                           
-0000a49c  __mspabi_sral_12                           
-0000a4a0  __mspabi_sral_11                           
-0000a4a4  __mspabi_sral_10                           
-0000a4a8  __mspabi_sral_9                            
-0000a4ac  __mspabi_sral_8                            
-0000a4b0  __mspabi_sral_7                            
-0000a4b4  __mspabi_sral_6                            
-0000a4b8  __mspabi_sral_5                            
-0000a4bc  __mspabi_sral_4                            
-0000a4c0  __mspabi_sral_3                            
-0000a4c4  __mspabi_sral_2                            
-0000a4c8  __mspabi_sral_1                            
-0000a4ce  __mspabi_slll_15                           
-0000a4d2  __mspabi_slll_14                           
-0000a4d6  __mspabi_slll_13                           
-0000a4da  __mspabi_slll_12                           
-0000a4de  __mspabi_slll_11                           
-0000a4e2  __mspabi_slll_10                           
-0000a4e6  __mspabi_slll_9                            
-0000a4ea  __mspabi_slll_8                            
-0000a4ee  __mspabi_slll_7                            
-0000a4f2  __mspabi_slll_6                            
-0000a4f6  __mspabi_slll_5                            
-0000a4fa  __mspabi_slll_4                            
-0000a4fe  __mspabi_slll_3                            
-0000a502  __mspabi_slll_2                            
-0000a506  __mspabi_slll_1                            
-0000a57c  Spi_Init                                   
-0000a5b2  Timer_OneShot_Start                        
-0000a5e8  Timer_Periodic_Start                       
-0000a686  LinkedList_Remove                          
-0000a6b6  Timer_Periodic_Init                        
-0000a714  __mspabi_subd                              
-0000a76e  Timer_OneShot_Init                         
-0000a79a  WaveformGenerator_Init                     
-0000a81e  __mspabi_srai                              
-0000a82a  __mspabi_srai_15                           
-0000a82c  __mspabi_srai_14                           
-0000a82e  __mspabi_srai_13                           
-0000a830  __mspabi_srai_12                           
-0000a832  __mspabi_srai_11                           
-0000a834  __mspabi_srai_10                           
-0000a836  __mspabi_srai_9                            
-0000a838  __mspabi_srai_8                            
-0000a83a  __mspabi_srai_7                            
-0000a83c  __mspabi_srai_6                            
-0000a83e  __mspabi_srai_5                            
-0000a840  __mspabi_srai_4                            
-0000a842  __mspabi_srai_3                            
-0000a844  __mspabi_srai_2                            
-0000a846  __mspabi_srai_1                            
-0000a84a  __mspabi_divi                              
-0000a84a  __mspabi_remi                              
-0000a876  __mspabi_slli                              
-0000a882  __mspabi_slli_15                           
-0000a884  __mspabi_slli_14                           
-0000a886  __mspabi_slli_13                           
-0000a888  __mspabi_slli_12                           
-0000a88a  __mspabi_slli_11                           
-0000a88c  __mspabi_slli_10                           
-0000a88e  __mspabi_slli_9                            
-0000a890  __mspabi_slli_8                            
-0000a892  __mspabi_slli_7                            
-0000a894  __mspabi_slli_6                            
-0000a896  __mspabi_slli_5                            
-0000a898  __mspabi_slli_4                            
-0000a89a  __mspabi_slli_3                            
-0000a89c  __mspabi_slli_2                            
-0000a89e  __mspabi_slli_1                            
-0000a8a2  LcdDisplayController_SetCursorIndex        
-0000a8cc  TimerModule_Run                            
-0000a8f6  Adc_10_Init                                
-0000a91e  Timer_OneShot_Stop                         
-0000a994  TA0_ISR                                    
-0000a9b8  __mspabi_fltuf                             
-0000a9dc  LinkedList_Insert                          
-0000aa20  LinkedList_ForEach                         
-0000aa7e  Interrupt_1MsSystemTick_Init               
-0000aae8  WaveformGenerator_Start                    
-0000ab02  _c_int00_noargs_noexit                     
-0000ab1c  EventSubscriber_Synchronous_Init           
-0000ab32  Event_Synchronous_Init                     
-0000ab5e  __mspabi_divu                              
-0000ab5e  __mspabi_remu                              
-0000ab88  __TI_zero_init                             
-0000ab9c  __mspabi_mpyi                              
-0000ab9c  __mspabi_mpyi_sw                           
-0000abf8  __mspabi_srll                              
-0000ac0a  memcpy                                     
-0000ac1c  __mspabi_sral                              
-0000ac2c  __mspabi_slll                              
-0000ac3c  __mspabi_func_epilog_7                     
-0000ac3e  __mspabi_func_epilog_6                     
-0000ac40  __mspabi_func_epilog_5                     
-0000ac42  __mspabi_func_epilog_4                     
-0000ac44  __mspabi_func_epilog_3                     
-0000ac46  __mspabi_func_epilog_2                     
-0000ac48  __mspabi_func_epilog_1                     
-0000ac5a  DacController_Init                         
-0000ac68  LcdDisplayController_WriteString           
-0000ac76  WaveformGenerator_SetFrequencyInHz         
-0000ac84  WaveformGenerator_Stop                     
-0000aca8  LinkedListNode_Init                        
-0000acbc  TimeSource_Interrupt1MsSystemTick_Init     
-0000acc6  Timer_OneShot_UpdateExpiryTicks            
-0000acda  WaveformGenerator_SetAmplitudePercentage   
-0000acfc  __TI_ISR_TRAP                              
-0000ad0a  LcdDisplayController_Init                  
-0000ad10  LinkedList_Init                            
-0000ad16  TimerModule_GetPeriodEvent                 
-0000ad1c  C$$EXIT                                    
-0000ad1c  abort                                      
-0000ad22  _system_pre_init                           
-0000ad26  Application_Run                            
-0000ad2a  StepperCalibrator_GetOnCalibrationDoneEvent
-0000ad2c  _system_post_cinit                         
-0000adc6  sineWave                                   
-0000ae6b  sineWaveLookupSize                         
-0000ae78  speedDisplaySensorInputApi                 
-0000ae84  __TI_Handler_Table_Base                    
-0000ae86  __TI_CINIT_Base                            
-0000ae86  __TI_Handler_Table_Limit                   
-0000ae8a  __TI_CINIT_Limit                           
+00009406  GpioGroup_Init                             
+00009740  __mspabi_cmpd                              
+0000981c  __mspabi_mpyf                              
+0000999e  __TI_renormd                               
+00009a5c  __mspabi_cvtdf                             
+00009b6e  StepperMotor_Init                          
+00009c72  __mspabi_cvtfd                             
+00009d54  Input_TimedButtonPress_Init                
+00009dc2  _auto_init                                 
+00009e30  LcdDisplayParallel2Line_Init               
+00009e9c  Input_StepperMotorHomeSensor_Init          
+00009f68  DacController_SendInputCode                
+00009fca  TB0_ISR                                    
+0000a026  __mspabi_srll_15                           
+0000a02c  __mspabi_srll_14                           
+0000a032  __mspabi_srll_13                           
+0000a038  __mspabi_srll_12                           
+0000a03e  __mspabi_srll_11                           
+0000a044  __mspabi_srll_10                           
+0000a04a  __mspabi_srll_9                            
+0000a050  __mspabi_srll_8                            
+0000a056  __mspabi_srll_7                            
+0000a05c  __mspabi_srll_6                            
+0000a062  __mspabi_srll_5                            
+0000a068  __mspabi_srll_4                            
+0000a06e  __mspabi_srll_3                            
+0000a074  __mspabi_srll_2                            
+0000a07a  __mspabi_srll_1                            
+0000a082  copy_in                                    
+0000a0dc  Input_Button_Init                          
+0000a188  StepperCalibrator_Calibrate                
+0000a276  __mspabi_srli                              
+0000a284  __mspabi_srli_15                           
+0000a288  __mspabi_srli_14                           
+0000a28c  __mspabi_srli_13                           
+0000a290  __mspabi_srli_12                           
+0000a294  __mspabi_srli_11                           
+0000a298  __mspabi_srli_10                           
+0000a29c  __mspabi_srli_9                            
+0000a2a0  __mspabi_srli_8                            
+0000a2a4  __mspabi_srli_7                            
+0000a2a8  __mspabi_srli_6                            
+0000a2ac  __mspabi_srli_5                            
+0000a2b0  __mspabi_srli_4                            
+0000a2b4  __mspabi_srli_3                            
+0000a2b8  __mspabi_srli_2                            
+0000a2bc  __mspabi_srli_1                            
+0000a2c2  StepperCalibrator_Init                     
+0000a30c  __mspabi_cmpf                              
+0000a3e4  __mspabi_fixfu                             
+0000a534  TimerModule_Init                           
+0000a576  HeartbeatLed_Init                          
+0000a5b6  Timer_Periodic_Command                     
+0000a5f6  __mspabi_sral_15                           
+0000a5fa  __mspabi_sral_14                           
+0000a5fe  __mspabi_sral_13                           
+0000a602  __mspabi_sral_12                           
+0000a606  __mspabi_sral_11                           
+0000a60a  __mspabi_sral_10                           
+0000a60e  __mspabi_sral_9                            
+0000a612  __mspabi_sral_8                            
+0000a616  __mspabi_sral_7                            
+0000a61a  __mspabi_sral_6                            
+0000a61e  __mspabi_sral_5                            
+0000a622  __mspabi_sral_4                            
+0000a626  __mspabi_sral_3                            
+0000a62a  __mspabi_sral_2                            
+0000a62e  __mspabi_sral_1                            
+0000a634  __mspabi_slll_15                           
+0000a638  __mspabi_slll_14                           
+0000a63c  __mspabi_slll_13                           
+0000a640  __mspabi_slll_12                           
+0000a644  __mspabi_slll_11                           
+0000a648  __mspabi_slll_10                           
+0000a64c  __mspabi_slll_9                            
+0000a650  __mspabi_slll_8                            
+0000a654  __mspabi_slll_7                            
+0000a658  __mspabi_slll_6                            
+0000a65c  __mspabi_slll_5                            
+0000a660  __mspabi_slll_4                            
+0000a664  __mspabi_slll_3                            
+0000a668  __mspabi_slll_2                            
+0000a66c  __mspabi_slll_1                            
+0000a6e2  Spi_Init                                   
+0000a718  Timer_OneShot_Start                        
+0000a74e  Timer_Periodic_Start                       
+0000a7ec  LinkedList_Remove                          
+0000a81c  Timer_Periodic_Init                        
+0000a87a  __mspabi_subd                              
+0000a8d4  Timer_OneShot_Init                         
+0000a900  WaveformGenerator_Init                     
+0000a984  __mspabi_srai                              
+0000a990  __mspabi_srai_15                           
+0000a992  __mspabi_srai_14                           
+0000a994  __mspabi_srai_13                           
+0000a996  __mspabi_srai_12                           
+0000a998  __mspabi_srai_11                           
+0000a99a  __mspabi_srai_10                           
+0000a99c  __mspabi_srai_9                            
+0000a99e  __mspabi_srai_8                            
+0000a9a0  __mspabi_srai_7                            
+0000a9a2  __mspabi_srai_6                            
+0000a9a4  __mspabi_srai_5                            
+0000a9a6  __mspabi_srai_4                            
+0000a9a8  __mspabi_srai_3                            
+0000a9aa  __mspabi_srai_2                            
+0000a9ac  __mspabi_srai_1                            
+0000a9b0  __mspabi_divi                              
+0000a9b0  __mspabi_remi                              
+0000a9dc  __mspabi_slli                              
+0000a9e8  __mspabi_slli_15                           
+0000a9ea  __mspabi_slli_14                           
+0000a9ec  __mspabi_slli_13                           
+0000a9ee  __mspabi_slli_12                           
+0000a9f0  __mspabi_slli_11                           
+0000a9f2  __mspabi_slli_10                           
+0000a9f4  __mspabi_slli_9                            
+0000a9f6  __mspabi_slli_8                            
+0000a9f8  __mspabi_slli_7                            
+0000a9fa  __mspabi_slli_6                            
+0000a9fc  __mspabi_slli_5                            
+0000a9fe  __mspabi_slli_4                            
+0000aa00  __mspabi_slli_3                            
+0000aa02  __mspabi_slli_2                            
+0000aa04  __mspabi_slli_1                            
+0000aa08  LcdDisplayController_SetCursorIndex        
+0000aa32  TimerModule_Run                            
+0000aa5c  Adc_10_Init                                
+0000aa84  Timer_OneShot_Stop                         
+0000aafa  TA0_ISR                                    
+0000ab1e  __mspabi_fltuf                             
+0000ab42  LinkedList_Insert                          
+0000ab86  LinkedList_ForEach                         
+0000abe4  Interrupt_1MsSystemTick_Init               
+0000ac4e  WaveformGenerator_Start                    
+0000ac68  _c_int00_noargs_noexit                     
+0000ac82  EventSubscriber_Synchronous_Init           
+0000ac98  Event_Synchronous_Init                     
+0000acc4  __mspabi_divu                              
+0000acc4  __mspabi_remu                              
+0000acee  __TI_zero_init                             
+0000ad02  __mspabi_mpyi                              
+0000ad02  __mspabi_mpyi_sw                           
+0000ad5e  __mspabi_srll                              
+0000ad70  memcpy                                     
+0000ad82  __mspabi_sral                              
+0000ad92  __mspabi_slll                              
+0000ada2  __mspabi_func_epilog_7                     
+0000ada4  __mspabi_func_epilog_6                     
+0000ada6  __mspabi_func_epilog_5                     
+0000ada8  __mspabi_func_epilog_4                     
+0000adaa  __mspabi_func_epilog_3                     
+0000adac  __mspabi_func_epilog_2                     
+0000adae  __mspabi_func_epilog_1                     
+0000adc0  DacController_Init                         
+0000adce  LcdDisplayController_WriteString           
+0000addc  WaveformGenerator_SetFrequencyInHz         
+0000adea  WaveformGenerator_Stop                     
+0000ae0e  LinkedListNode_Init                        
+0000ae22  TimeSource_Interrupt1MsSystemTick_Init     
+0000ae2c  Timer_OneShot_UpdateExpiryTicks            
+0000ae40  WaveformGenerator_SetAmplitudePercentage   
+0000ae62  __TI_ISR_TRAP                              
+0000ae70  LcdDisplayController_Init                  
+0000ae76  LinkedList_Init                            
+0000ae7c  TimerModule_GetPeriodEvent                 
+0000ae82  C$$EXIT                                    
+0000ae82  abort                                      
+0000ae88  _system_pre_init                           
+0000ae8c  Application_Run                            
+0000ae90  StepperCalibrator_GetOnCalibrationDoneEvent
+0000ae92  _system_post_cinit                         
+0000af2e  sineWave                                   
+0000afd3  sineWaveLookupSize                         
+0000afe0  speedDisplaySensorInputApi                 
+0000afec  __TI_Handler_Table_Base                    
+0000afee  __TI_CINIT_Base                            
+0000afee  __TI_Handler_Table_Limit                   
+0000aff2  __TI_CINIT_Limit                           
 0000ffe4  __TI_int02                                 
 0000ffe6  __TI_int03                                 
 0000ffea  __TI_int05                                 
@@ -995,4 +1003,4 @@ UNDEFED   __TI_BINIT_Limit
 UNDEFED   __TI_INITARRAY_Base                        
 UNDEFED   __TI_INITARRAY_Limit                       
 
-[301 symbols]
+[303 symbols]

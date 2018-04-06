@@ -119,16 +119,16 @@ static void UpdateLcd(void *context)
         char time[5];
         Uint8To3LenghtString(GetHr(instance), hr);
         GetTimeAsString(instance, time);
-        memcpy(instance->lcdDisplayLine1, "WORKOUT:00:00___", 16);
-        memcpy(instance->lcdDisplayLine2, "HR:000 ", 7);
-        instance->lcdDisplayLine1[8] = time[0];
-        instance->lcdDisplayLine1[9] = time[1];
-        instance->lcdDisplayLine1[10] = time[2];
-        instance->lcdDisplayLine1[11] = time[3];
-        instance->lcdDisplayLine1[12] = time[4];
-        instance->lcdDisplayLine2[3] = hr[0];
-        instance->lcdDisplayLine2[4] = hr[1];
-        instance->lcdDisplayLine2[5] = hr[2];
+        memcpy(instance->lcdDisplayLine1, "TIME:00:00______", 16);
+        memcpy(instance->lcdDisplayLine2, "BPM: 000", 7);
+        instance->lcdDisplayLine1[5] = time[0];
+        instance->lcdDisplayLine1[6] = time[1];
+        instance->lcdDisplayLine1[7] = time[2];
+        instance->lcdDisplayLine1[8] = time[3];
+        instance->lcdDisplayLine1[9] = time[4];
+        instance->lcdDisplayLine2[5] = hr[0];
+        instance->lcdDisplayLine2[6] = hr[1];
+        instance->lcdDisplayLine2[7] = hr[2];
     }
     else
     {
@@ -198,18 +198,18 @@ static void IncreaseStepperOutput(void *context, void *args)
             if(!StepperMotor_IsBusy(instance->stepperMotorOne) &&
                instance->stepperOnePositionIndex < MaxStepIndexCount - 1)
             {
+                if(instance->waveFrequencyHz <= 0 && instance->shouldOutputWave)
+                {
+                    WaveformGenerator_Start(
+                            instance->waveformGenerator,
+                            sineWave,
+                            sineWaveLookupSize);
+                }
+
                 instance->waveFrequencyHz++;
 
                 if(instance->shouldOutputWave)
                 {
-                    if(instance->waveFrequencyHz == 0)
-                    {
-                        WaveformGenerator_Start(
-                                instance->waveformGenerator,
-                                sineWave,
-                                sineWaveLookupSize);
-                    }
-
                     WaveformGenerator_SetFrequencyInHz(instance->waveformGenerator, instance->waveFrequencyHz);
                 }
 
@@ -225,7 +225,10 @@ static void IncreaseStepperOutput(void *context, void *args)
             if(!StepperMotor_IsBusy(instance->stepperMotorTwo) &&
                instance->stepperTwoPositionIndex < MaxStepIndexCount - 1)
             {
-                instance->waveAmplitudePercentage += 0.05;
+                if(instance->waveAmplitudePercentage < 1.0)
+                {
+                    instance->waveAmplitudePercentage += 0.05;
+                }
 
                 if(instance->shouldOutputWave)
                 {
@@ -284,7 +287,10 @@ static void DecreaseStepperOutput(void *context, void *args)
             if(!StepperMotor_IsBusy(instance->stepperMotorTwo) &&
                instance->stepperTwoPositionIndex >= 0)
             {
-                instance->waveAmplitudePercentage -= 0.05;
+                if(instance->waveAmplitudePercentage > 0.05)
+                {
+                    instance->waveAmplitudePercentage -= 0.05;
+                }
 
                 if(instance->shouldOutputWave)
                 {
